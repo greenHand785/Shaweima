@@ -80,13 +80,13 @@ public class TaskMgr : MonoBehaviour
         int hurt = Random.Range(0, 5);
         int cure = Random.Range(0, 5);
         float totalTime = Random.Range(60, 120);
-        task.InitTask(targetEqu, hurt, cure, totalTime);
         for (int i = 0; i < randomCount; i++)
         {
             int randomType = Random.Range(0, 3);
             float time = Random.Range(10, 15);
             task.AddRequire((ObjectType)randomType, time);
         }
+        task.InitTask(targetEqu, hurt, cure, totalTime);
 
         curTask.Add(task);
         if (target.ContainsKey(targetEqu))

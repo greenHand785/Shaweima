@@ -7,26 +7,28 @@ using UnityEngine.UI;
 public class TaskPanel : MonoBehaviour
 {
     private Text title;
-    private Text content;
     private Text releaseTime; // 剩余时间
 
     private UIFollowObject follow;
     private string title_str;
     private string content_str;
     private MaintenanceTask task;
+
+    public Transform subTaskRoot;
+    public SubTaskPanel exampleSubTask;
+    
     // Start is called before the first frame update
     void Start()
     {
         title = transform.Find("title").GetComponent<Text>();
-        content = transform.Find("content").GetComponent<Text>();
-        releaseTime = transform.Find("releaseCount").GetComponent<Text>();
+        releaseTime = transform.Find("title/releaseCount").GetComponent<Text>();
+        subTaskRoot = transform.Find("SubTask").transform;
         follow = transform.GetComponent<UIFollowObject>();
     }
 
     private void Update()
     {
         title.text = title_str;
-        content.text = content_str;
         releaseTime.text = task.GetReleaseTime().ToString("F1");
     }
     public void SetTitle(string str)
@@ -42,6 +44,18 @@ public class TaskPanel : MonoBehaviour
     public void SetTask(MaintenanceTask task)
     {
         this.task = task;
+        exampleSubTask.gameObject.SetActive(false);
+        // 初始化子任务
+        if (task.GetTaskInfos() != null)
+        {
+            foreach (var item in task.GetTaskInfos())
+            {
+                SubTaskPanel sub = Instantiate(exampleSubTask.gameObject, subTaskRoot).GetComponent<SubTaskPanel>();
+                sub.SetTaskInfo(item.Key, item.Value);
+                sub.gameObject.SetActive(true);
+            }
+        }
+
     }
 
     public void SetTarget(Transform target)

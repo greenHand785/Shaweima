@@ -215,6 +215,17 @@ public class MaintenanceTask : TaskBase
         m_task.SetTarget(m_equip.transform);
     }
 
+    public Dictionary<ObjectType, TaskInfo> GetTaskInfos()
+    {
+        return m_taskRequire;
+    }
+
+    public override void Destroy()
+    {
+        Destroy(m_task.gameObject);
+        base.Destroy();
+    }
+
     protected override void Update()
     {
         base.Update();
