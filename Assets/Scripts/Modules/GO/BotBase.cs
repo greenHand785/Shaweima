@@ -8,8 +8,7 @@ public class BotBase : ObjectBase
     public Mover mover;
 
     private MaintenanceTask m_targetTask;
-
-
+    private Transform m_curWorkPos;
     private List<Vector3> tempWayPos = new List<Vector3>();
 
     /// <summary>
@@ -34,12 +33,19 @@ public class BotBase : ObjectBase
         isWorking = workState;
     }
 
-    public void SetTargetTask(MaintenanceTask task)
+    public void SetTargetTask(MaintenanceTask task, Transform targetWorkPoint)
     {
+       
+        if(m_curWorkPos!=null)
+        {
+             if (m_curWorkPos == targetWorkPoint) return;
+            m_curWorkPos.GetComponentInParent<WorkArea>().ReleaseWorkPoint(m_curWorkPos);
+        }
         m_targetTask = task;
+        m_curWorkPos = targetWorkPoint;
         tempWayPos.Clear();
         tempWayPos.Add(transform.position);
-        tempWayPos.Add(task.transform.position);
+        tempWayPos.Add(targetWorkPoint.position);
         mover.SetPathPoints(tempWayPos);
         isWorking = false;
         mover.SetWork(true);
@@ -48,11 +54,15 @@ public class BotBase : ObjectBase
     {
         if (m_targetTask==null) return;
         if (isWorking) return;
-        if (Vector3.Distance(transform.position, m_targetTask.transform.position)<1)
+        if (Vector3.Distance(transform.position, m_curWorkPos.position)<0.1)
         {
             StartWork();
             mover.SetWork(false);
         }
+    }
+    private void CheckLeaveWorkPonint()
+    {
+
     }
 
     // Start is called before the first frame update
@@ -65,5 +75,6 @@ public class BotBase : ObjectBase
     void Update()
     {
         CheckStartWork();
+        CheckLeaveWorkPonint();
     }
 }

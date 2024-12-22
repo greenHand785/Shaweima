@@ -73,12 +73,26 @@ private void CheckSelected()
                     Transform target = hit.collider.transform;
                     // 任务
                     MaintenanceTask task = target.GetComponent<MaintenanceTask>();
-
+                    WorkArea workArea= target.GetComponent<WorkArea>();
+                    Transform currentWorkPoint;
+                    
                      foreach (GameObject selectedObject in selectedObjects)
                      {
                         tempWayPos.Clear();
                         BotBase bot = selectedObject.GetComponent<BotBase>();
-                        bot.SetTargetTask(task);
+
+                        // 尝试获取一个工作点
+                        if (workArea.HasAvailablePoint())
+                        {
+                            currentWorkPoint = workArea.GetWorkPoint();
+                            Debug.Log("获取到工作点：" + currentWorkPoint.name);
+                            bot.SetTargetTask(task,currentWorkPoint);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("没有可用的工作点！");
+                        }
+                       
                     }
                    ClearSelection();
                 }

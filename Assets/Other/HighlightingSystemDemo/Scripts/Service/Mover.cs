@@ -10,7 +10,7 @@ public class Mover : MonoBehaviour
     public Material lineMaterial;  // 线材质
     public float arrowHeadLength = 0.5f; // 箭头头部的长度
     public float arrowHeadAngle = 20f;   // 箭头头部的角度
-    public float moveSpeed = 5f;   // 移动速度
+    public float moveSpeed = 10f;   // 移动速度
     private LineRenderer lineRenderer;
 
     private int currentPointIndex = 0; // 当前目标点的索引

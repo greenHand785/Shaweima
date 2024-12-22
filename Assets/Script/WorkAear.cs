@@ -4,8 +4,8 @@ using UnityEngine;
 public class WorkArea : MonoBehaviour
 {
     public List<Transform> allWorkPoints = new List<Transform>(); // 所有的工作点
-    private List<Transform> availableWorkPoints = new List<Transform>(); // 可用的工作点
-    private HashSet<Transform> occupiedWorkPoints = new HashSet<Transform>(); // 已占用的工作点
+    public List<Transform> availableWorkPoints = new List<Transform>(); // 可用的工作点
+    public HashSet<Transform> occupiedWorkPoints = new HashSet<Transform>(); // 已占用的工作点
 
     void Start()
     {
