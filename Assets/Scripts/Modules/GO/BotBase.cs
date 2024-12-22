@@ -23,7 +23,7 @@ public class BotBase : ObjectBase
     protected List<Vector3> tempWayPos = new List<Vector3>();
 
 
-    public int MoveSpeed;//移动速度
+    public float MoveSpeed;//移动速度
     public float EfficiencyMultiplier;//工作效率，倍
     public float CanSurvivalTime;  //可存活时间
     public float Durability; //耐久度[0,1]， passTime/CanSurvivalTime；
@@ -115,10 +115,17 @@ public class BotBase : ObjectBase
     {
         MoveSpeed=speed;
     }
+
+    public void SetProperty(JsonProductDefield info)
+    {
+        MoveSpeed = info.moveSpeed;
+        EfficiencyMultiplier = info.effect;
+        CanSurvivalTime = info.durability;
+    }
+
     protected void Init()
     {
         mover=GetComponent<Mover>();
-        mover.SetSpeed(MoveSpeed);
     }
 
     // Start is called before the first frame update
@@ -137,5 +144,7 @@ public class BotBase : ObjectBase
         CheckStartWork();
         CheckLeaveWorkPonint();
         CheckLife();
+
+        mover.SetSpeed(MoveSpeed);
     }
 }
