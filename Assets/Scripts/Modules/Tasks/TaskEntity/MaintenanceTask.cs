@@ -71,7 +71,12 @@ public class MaintenanceTask : TaskBase
                 if (m_curworking.ContainsKey(item.Key))
                 {
                     List<BotBase> list = m_curworking[item.Key];
-                    workTime = Time.deltaTime * list.Count;
+                    float effectValue = 0;
+                    foreach (var bot in list)
+                    {
+                        effectValue += bot.EfficiencyMultiplier;
+                    }
+                    workTime = Time.deltaTime * effectValue;
                 }
             }
             item.Value.curTime += workTime;

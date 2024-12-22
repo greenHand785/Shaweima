@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GlobalSheetConfig>
+  <SheetConfig Class="Com.Saidao.Pb.ShipSheet" Path="/Configs/SheetConfig/Ships" />
+  <SheetConfig Class="Com.Saidao.Pb.DynamicInfoSheet" Path="/Configs/SheetConfig/Dynamics" />
+</GlobalSheetConfig>
