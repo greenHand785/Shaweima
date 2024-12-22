@@ -16,11 +16,12 @@ public class BotBase : ObjectBase
 
 
 
-    public int MoveSpeed;
-    public float EfficiencyMultiplier;//倍
-    public float Durability; //耐久度[0,1]
+    public int MoveSpeed;//移动速度
+    public float EfficiencyMultiplier;//工作效率，倍
+    public float CanSurvivalTime;  //可存活时间
+    public float Durability; //耐久度[0,1]， passTime/CanSurvivalTime；
     public int CreatNeedCoins;//花费金币
-
+    private float passTime;     
     /// <summary>
     /// 机器人工作状态
     /// </summary>
@@ -87,11 +88,23 @@ public class BotBase : ObjectBase
 
     }
 
-    // Start is called before the first frame update
+    public void SetMoverSpeed(int speed)
+    {
+        MoveSpeed=speed;
+    }
+    private void Init()
+    {
+        mover=GetComponent<Mover>();
+        mover.SetSpeed(MoveSpeed);
+    }
+        // Start is called before the first frame update
     void Start()
     {
-        
+        Init();
     }
+
+
+
 
     // Update is called once per frame
     void Update()
