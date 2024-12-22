@@ -62,6 +62,15 @@ public class MaintenanceTask : TaskBase
         m_isFinish = isfinish;
     }
 
+    /// <summary>
+    /// 获得任务剩余时间
+    /// </summary>
+    /// <returns></returns>
+    public float GetReleaseTime()
+    {
+        return Mathf.Max(0, m_totalTime - m_curWaitTime);
+    }
+
     public override void GetPunishment()
     {
         m_equip.Injured(m_hurtValue);
@@ -81,8 +90,10 @@ public class MaintenanceTask : TaskBase
         m_cureValue = cure;
         m_equip = equip;
         m_totalTime = totalTime;
-        //m_task = UIMgr.Instance.InstanceUI<TaskPanel>("Prefables/Pop");
-        //m_task.SetTitle(equip.name);
+
+        m_task = UIMgr.Instance.InstanceUI<TaskPanel>("Prefables/Pop");
+        m_task.SetTitle(equip.name);
+        m_task.SetTask(this);
     }
 
     /// <summary>
@@ -149,7 +160,7 @@ public class MaintenanceTask : TaskBase
         {
             foreach (var item in m_taskRequire)
             {
-                s.AppendLine(item.Key.ToString() + ": " + item.Value + "s");
+                s.AppendLine(item.Key.ToString() + ": " + item.Value.totalTime + "s");
             }
         }
         m_task.SetContent(s.ToString());
@@ -160,7 +171,8 @@ public class MaintenanceTask : TaskBase
     protected override void Update()
     {
         base.Update();
-        //InitTaskTag();
+        
+        InitTaskTag();
     }
 
 

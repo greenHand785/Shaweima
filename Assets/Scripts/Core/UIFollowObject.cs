@@ -100,15 +100,15 @@ namespace Component.UI
             {
                 return;
             }
-            Vector3 uiWorldPos = Camera.main.ScreenToWorldPoint(screenPoint);
+            Vector3 uiWorldPos = showCamera.ScreenToWorldPoint(screenPoint);
             Vector2 afterTransform = NormalScreenPoint2NowScreenPoint(screenPoint, showCamera);
-            transform.position = uiWorldPos;
+            //transform.position = uiWorldPos;
             Vector3 localPos = transform.localPosition;
             localPos.z = 0;
             localPos.x += offset.x;
             localPos.y += offset.y;
-            transform.localPosition = localPos;
-            //transform.GetComponent<RectTransform>().anchoredPosition = offset + afterTransform;
+            //transform.localPosition = localPos;
+            transform.GetComponent<RectTransform>().anchoredPosition = offset + afterTransform;
             DrawLine(afterTransform, offset + afterTransform);
         }
 
