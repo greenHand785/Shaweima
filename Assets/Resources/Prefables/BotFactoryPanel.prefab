@@ -468,8 +468,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46645519410083a42956fee7dec0228f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  createBtn: {fileID: 0}
-  upBtn: {fileID: 0}
 --- !u!1 &2184683326252180665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2015,7 +2013,6 @@ GameObject:
   - component: {fileID: 7027342470315351724}
   - component: {fileID: 3756324085305305424}
   - component: {fileID: 6746033283928461414}
-  - component: {fileID: 254109061211055938}
   - component: {fileID: 2075141118406129594}
   m_Layer: 5
   m_Name: BotFactoryPanel
@@ -2084,24 +2081,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &254109061211055938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7015462178643090960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bc6e88fe37e6394c8aada0d59eba695, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  latLonAlt: {x: 0, y: 0, z: 0}
-  screenPos: {x: 0, y: 0, z: 0}
-  showCamera: {fileID: 0}
-  offset: {x: 0, y: 0}
-  OpenDestory: 0
 --- !u!114 &2075141118406129594
 MonoBehaviour:
   m_ObjectHideFlags: 0

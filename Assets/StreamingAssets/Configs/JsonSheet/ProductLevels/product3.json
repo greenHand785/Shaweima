@@ -3,7 +3,7 @@
   "list": [
     {
       "level": 1,
-      "path": "Prefables/Bots/botC",
+      "path": "Prefables/Bots/运输机器人",
       "createTotalTime": 20,
       "moveSpeed": 5,
       "effect": 1,
@@ -12,7 +12,7 @@
     },
     {
       "level": 2,
-      "path": "Prefables/Bots/botC",
+      "path": "Prefables/Bots/运输机器人",
       "createTotalTime": 18,
       "moveSpeed": 6,
       "effect": 1.2,
@@ -21,7 +21,7 @@
     },
     {
       "level": 3,
-      "path": "Prefables/Bots/botC",
+      "path": "Prefables/Bots/运输机器人",
       "createTotalTime": 16,
       "moveSpeed": 8,
       "effect": 1.5,
@@ -30,7 +30,7 @@
     },
     {
       "level": 4,
-      "path": "Prefables/Bots/botC",
+      "path": "Prefables/Bots/运输机器人",
       "createTotalTime": 13,
       "moveSpeed": 10,
       "effect": 2,
@@ -39,7 +39,7 @@
     },
     {
       "level": 5,
-      "path": "Prefables/Bots/botC",
+      "path": "Prefables/Bots/运输机器人",
       "createTotalTime": 10,
       "moveSpeed": 10,
       "effect": 2.5,
