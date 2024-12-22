@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
 public class BotBase : ObjectBase
 {
     public ObjectType type;
@@ -10,6 +13,13 @@ public class BotBase : ObjectBase
     private MaintenanceTask m_targetTask;
     private Transform m_curWorkPos;
     private List<Vector3> tempWayPos = new List<Vector3>();
+
+
+
+    public float MoveSpeed;
+    public float EfficiencyMultiplier;//倍
+    public float Durability; //耐久度
+    public float CreatNeedCoins;//花费金币
 
     /// <summary>
     /// 机器人工作状态
