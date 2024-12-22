@@ -5,6 +5,14 @@ using UnityEngine;
 
 
 
+public enum BotState
+{
+    Free,
+    Work,
+    Walk,
+    Dead
+}
+
 public class BotBase : ObjectBase
 {
     public ObjectType type;
@@ -22,6 +30,8 @@ public class BotBase : ObjectBase
     public float Durability; //耐久度[0,1]， passTime/CanSurvivalTime；
     public int CreatNeedCoins;//花费金币
     private float passTime;     
+   
+    public BotState botState;
     /// <summary>
     /// 机器人工作状态
     /// </summary>
@@ -61,26 +71,33 @@ public class BotBase : ObjectBase
         mover.SetPathPoints(tempWayPos);
         isWorking = false;
         mover.SetWork(true);
-     
+        //当前在行走
+        botState=BotState.Walk;
     }
 
 
 
-    private void CheckWorkState()
+    public void CheckLife()
     {
-        if (m_targetTask==null)
+        if(botState==BotState.Dead) return;
+        passTime+=Time.deltaTime;
+        if (passTime>=CanSurvivalTime)
         {
-
+           botState=BotState.Dead;
+            //销毁自己？
         }
     }
     public void CheckStartWork()
     {
+        if(botState==BotState.Dead) return;
         if (m_targetTask==null) return;
         if (isWorking) return;
         if (Vector3.Distance(transform.position, m_curWorkPos.position)<0.1)
         {
             StartWork();
             mover.SetWork(false);
+            //当前在工作
+            botState=BotState.Work;
         }
     }
     private void CheckLeaveWorkPonint()
@@ -97,7 +114,8 @@ public class BotBase : ObjectBase
         mover=GetComponent<Mover>();
         mover.SetSpeed(MoveSpeed);
     }
-        // Start is called before the first frame update
+
+    // Start is called before the first frame update
     void Start()
     {
         Init();
@@ -111,6 +129,6 @@ public class BotBase : ObjectBase
     {
         CheckStartWork();
         CheckLeaveWorkPonint();
-        CheckWorkState();
+        CheckLife();
     }
 }

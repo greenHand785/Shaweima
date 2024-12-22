@@ -102,6 +102,10 @@ public class Mover : MonoBehaviour
     }
 
 
+    public void SetSpeed(float speed)
+    {
+        moveSpeed = speed;
+    }
 
 
     public void SetWork(bool value)

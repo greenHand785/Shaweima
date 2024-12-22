@@ -1043,6 +1043,10 @@ PrefabInstance:
       propertyPath: type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 987400153840460902, guid: 04da0005e8c24d742bb9a85ea669f683, type: 3}
+      propertyPath: botState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1601446250041963401, guid: 04da0005e8c24d742bb9a85ea669f683, type: 3}
       propertyPath: m_RootOrder
       value: 1

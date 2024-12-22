@@ -191,3 +191,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   mover: {fileID: 6897593706723049282}
+  MoveSpeed: 10
+  EfficiencyMultiplier: 1
+  CanSurvivalTime: 120
+  Durability: 1
+  CreatNeedCoins: 1
+  botState: 0
