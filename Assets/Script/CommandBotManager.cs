@@ -11,6 +11,9 @@ public class CommandBotManager : MonoBehaviour
     public string selectableTag = "WorkAear";               // 目标物体的Tag（例如工作区域）
 
     private List<Vector3> tempWayPos=new List<Vector3>();
+
+    public LayerMask targetLayer; // 用于指定需要检测的层级
+    public float rayDistance = 100000f; // 射线的长度
     void Update()
     {
             CheckSelected();
@@ -24,7 +27,7 @@ private void CheckSelected()
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,rayDistance, targetLayer))
             {
                 // 如果点击的是具有 "SelectableBot" 标签的物体
                 if (hit.collider.CompareTag(selectableTagBot))
@@ -66,7 +69,7 @@ private void CheckSelected()
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            if (Physics.Raycast(ray, out hit,rayDistance, targetLayer))
             {
                 // 如果点击的是具有 "SelectableWorkArea" 标签的物体
                 if (hit.collider.CompareTag(selectableTag))
