@@ -9,5 +9,6 @@ public class TaskInfo
 {
     public float totalTime;
     public float curTime;
+    public bool isFinish; // 当前子任务是否完成
 
 }

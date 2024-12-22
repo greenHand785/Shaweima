@@ -23,7 +23,30 @@ public class MaintenanceTask : TaskBase
         {
             return true;
         }
-        return m_curworking != null && m_curworking.Count >= m_taskRequire.Count;
+        bool result = true;
+        foreach (var item in m_taskRequire)
+        {
+            if (item.Value.isFinish)
+            {
+                continue;
+            }
+            if(m_curworking == null)
+            {
+                result = false;
+                break;
+            }
+            if (!m_curworking.ContainsKey(item.Key))
+            {
+                result = false;
+                break;
+            }
+            if(m_curworking[item.Key].Count <= 0)
+            {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
     public override void CheckLimitedTime()
@@ -40,7 +63,6 @@ public class MaintenanceTask : TaskBase
         m_isFail = m_curWaitTime >= m_totalTime;
 
         bool isfinish = true;
-
         foreach (var item in m_taskRequire)
         {
             workTime = 0;
@@ -53,10 +75,10 @@ public class MaintenanceTask : TaskBase
                 }
             }
             item.Value.curTime += workTime;
-            if (item.Value.curTime < item.Value.totalTime)
+            item.Value.isFinish = item.Value.curTime >= item.Value.totalTime;
+            if (!item.Value.isFinish)
             {
                 isfinish = false;
-                break;
             }
         }
         m_isFinish = isfinish;
@@ -146,6 +168,31 @@ public class MaintenanceTask : TaskBase
             m_curworking.Add(type, list);
         }
         list.Add(bot);
+    }
+
+    /// <summary>
+    /// 移除机器人
+    /// </summary>
+    public void RemoveBot(ObjectType type, BotBase bot)
+    {
+        if (bot == null)
+        {
+            Debug.LogError("bot null");
+            return;
+        }
+        if(m_curworking == null)
+        {
+            Debug.LogError("bot 不存在");
+            return;
+        }
+        if(m_curworking.TryGetValue(type, out List<BotBase> list))
+        {
+            if (list.Contains(bot))
+            {
+                list.Remove(bot);
+                // 移除成功
+            }
+        }
     }
 
     StringBuilder s = new StringBuilder();
