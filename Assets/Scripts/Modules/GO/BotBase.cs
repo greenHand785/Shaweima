@@ -16,10 +16,10 @@ public class BotBase : ObjectBase
 
 
 
-    public float MoveSpeed;
+    public int MoveSpeed;
     public float EfficiencyMultiplier;//倍
-    public float Durability; //耐久度
-    public float CreatNeedCoins;//花费金币
+    public float Durability; //耐久度[0,1]
+    public int CreatNeedCoins;//花费金币
 
     /// <summary>
     /// 机器人工作状态
