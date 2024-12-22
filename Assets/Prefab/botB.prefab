@@ -154,7 +154,7 @@ MonoBehaviour:
   _tweenUseUnscaledTime: 0
   _constant: 0
   _constantColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  _constantFadeInTime: 0.4
+  _constantFadeInTime: 0.1
   _constantFadeOutTime: 0.4
   _constantEasing: 0
   _constantUseUnscaledTime: 0

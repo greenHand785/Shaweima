@@ -40,6 +40,7 @@ public class BotBase : ObjectBase
         {
              if (m_curWorkPos == targetWorkPoint) return;
             m_curWorkPos.GetComponentInParent<WorkArea>().ReleaseWorkPoint(m_curWorkPos);
+            m_targetTask.RemoveBot(type, this);
         }
         m_targetTask = task;
         m_curWorkPos = targetWorkPoint;
@@ -49,6 +50,17 @@ public class BotBase : ObjectBase
         mover.SetPathPoints(tempWayPos);
         isWorking = false;
         mover.SetWork(true);
+     
+    }
+
+
+
+    private void CheckWorkState()
+    {
+        if (m_targetTask==null)
+        {
+
+        }
     }
     public void CheckStartWork()
     {
@@ -76,5 +88,6 @@ public class BotBase : ObjectBase
     {
         CheckStartWork();
         CheckLeaveWorkPonint();
+        CheckWorkState();
     }
 }
