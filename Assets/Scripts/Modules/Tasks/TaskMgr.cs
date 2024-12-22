@@ -76,7 +76,6 @@ public class TaskMgr : MonoBehaviour
         {
             return;
         }
-
         MaintenanceTask task = CreateTaskExeample<MaintenanceTask>(targetEqu.gameObject);
         int hurt = Random.Range(0, 5);
         int cure = Random.Range(0, 5);
@@ -98,6 +97,8 @@ public class TaskMgr : MonoBehaviour
         {
             target.Add(targetEqu, task);
         }
+
+        EventCenter.Broadcast(CombatEventType.Event_MaintenanceTaskCreate, task);
     }
 
     /// <summary>
