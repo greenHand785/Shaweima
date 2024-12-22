@@ -7,6 +7,7 @@ using UnityEngine;
 /// </summary>
 public class TaskInfo
 {
-    public List<ObjectBase> objects;
+    public float totalTime;
+    public float curTime;
 
 }

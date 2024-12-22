@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class MaintenanceTask : TaskBase
 {
-    protected Dictionary<ObjectType, float> m_taskRequire;
+    protected Dictionary<ObjectType, TaskInfo> m_taskRequire;
     protected Dictionary<ObjectType, List<BotBase>> m_curworking;
 
     protected ObjectBase m_equip;
@@ -24,6 +24,42 @@ public class MaintenanceTask : TaskBase
             return true;
         }
         return m_curworking != null && m_curworking.Count >= m_taskRequire.Count;
+    }
+
+    public override void CheckLimitedTime()
+    {
+        // 检测
+        float deltalTime = Time.deltaTime;
+        float workTime = 0;
+        if (CheckIsWorking())
+        {
+            deltalTime = 0;
+        }
+        m_curWaitTime += deltalTime;
+        // 当所有类型的机器人都存在后，时间不在增加
+        m_isFail = m_curWaitTime >= m_totalTime;
+
+        bool isfinish = true;
+
+        foreach (var item in m_taskRequire)
+        {
+            workTime = 0;
+            if (m_curworking != null)
+            {
+                if (m_curworking.ContainsKey(item.Key))
+                {
+                    List<BotBase> list = m_curworking[item.Key];
+                    workTime = Time.deltaTime * list.Count;
+                }
+            }
+            item.Value.curTime += workTime;
+            if (item.Value.curTime < item.Value.totalTime)
+            {
+                isfinish = false;
+                break;
+            }
+        }
+        m_isFinish = isfinish;
     }
 
     public override void GetPunishment()
@@ -56,15 +92,15 @@ public class MaintenanceTask : TaskBase
     {
         if(m_taskRequire == null)
         {
-            m_taskRequire = new Dictionary<ObjectType, float>();
+            m_taskRequire = new Dictionary<ObjectType, TaskInfo>();
         }
         if (!m_taskRequire.ContainsKey(type))
         {
-            m_taskRequire.Add(type, time);
+            m_taskRequire.Add(type, new TaskInfo() { totalTime = time });
         }
         else
         {
-            m_taskRequire[type] += time;
+            m_taskRequire[type].totalTime += time;
         }
     }
 
