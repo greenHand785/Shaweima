@@ -1,0 +1,51 @@
+{
+  "ID": 2,
+  "list": [
+    {
+      "level": 1,
+      "path": "Prefables/Bots/botB",
+      "createTotalTime": 20,
+      "moveSpeed": 5,
+      "effect": 1,
+      "cost": 2,
+      "durability": 10
+    },
+    {
+      "level": 2,
+      "path": "Prefables/Bots/botB",
+      "createTotalTime": 18,
+      "moveSpeed": 6,
+      "effect": 1.2,
+      "cost": 2,
+      "durability": 13
+    },
+    {
+      "level": 3,
+      "path": "Prefables/Bots/botB",
+      "createTotalTime": 16,
+      "moveSpeed": 8,
+      "effect": 1.5,
+      "cost": 2,
+      "durability": 15
+    },
+    {
+      "level": 4,
+      "path": "Prefables/Bots/botB",
+      "createTotalTime": 13,
+      "moveSpeed": 10,
+      "effect": 2,
+      "cost": 2,
+      "durability": 20
+    },
+    {
+      "level": 5,
+      "path": "Prefables/Bots/botB",
+      "createTotalTime": 10,
+      "moveSpeed": 10,
+      "effect": 2.5,
+      "cost": 2,
+      "durability": 20
+    }
+  ]
+
+}

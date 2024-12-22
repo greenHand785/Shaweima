@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GlobalXmlConfig>
+  <XmlConfig Class="Com.Saidao.Pb.CommonSettingConfig" Path="/Configs/XmlConfig/common_setting.dat" />
+</GlobalXmlConfig>
