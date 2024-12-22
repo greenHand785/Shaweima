@@ -17,11 +17,10 @@ public class BotBase : ObjectBase
 {
     public ObjectType type;
     public Mover mover;
-
-    private MaintenanceTask m_targetTask;
-    private Transform m_curWorkPos;
-    private List<Vector3> tempWayPos = new List<Vector3>();
-
+    public  Animator animator; // Animator 组件引用
+    protected MaintenanceTask m_targetTask;
+    protected Transform m_curWorkPos;
+    protected List<Vector3> tempWayPos = new List<Vector3>();
 
 
     public int MoveSpeed;//移动速度
@@ -29,7 +28,7 @@ public class BotBase : ObjectBase
     public float CanSurvivalTime;  //可存活时间
     public float Durability; //耐久度[0,1]， passTime/CanSurvivalTime；
     public int CreatNeedCoins;//花费金币
-    private float passTime;     
+    public float passTime;     
    
     public BotState botState;
     /// <summary>
@@ -41,7 +40,7 @@ public class BotBase : ObjectBase
         private set;
     }
 
-    private void StartWork()
+    protected void StartWork()
     {
         m_targetTask.AddBot(type, this);
         isWorking = true;
@@ -56,7 +55,7 @@ public class BotBase : ObjectBase
 
     public void SetTargetTask(MaintenanceTask task, Transform targetWorkPoint)
     {
-       
+         if(botState==BotState.Dead) return;
         if(m_curWorkPos!=null)
         {
              if (m_curWorkPos == targetWorkPoint) return;
@@ -73,6 +72,7 @@ public class BotBase : ObjectBase
         mover.SetWork(true);
         //当前在行走
         botState=BotState.Walk;
+        transform.LookAt(m_curWorkPos);
     }
 
 
@@ -87,6 +87,11 @@ public class BotBase : ObjectBase
             //销毁自己？
         }
     }
+
+    public void AnimationCotrll()
+    {
+          animator.SetInteger("State", (int)botState);
+    }
     public void CheckStartWork()
     {
         if(botState==BotState.Dead) return;
@@ -98,9 +103,10 @@ public class BotBase : ObjectBase
             mover.SetWork(false);
             //当前在工作
             botState=BotState.Work;
+            transform.LookAt(m_targetTask.transform.position);
         }
     }
-    private void CheckLeaveWorkPonint()
+    protected void CheckLeaveWorkPonint()
     {
 
     }
@@ -109,7 +115,7 @@ public class BotBase : ObjectBase
     {
         MoveSpeed=speed;
     }
-    private void Init()
+    protected void Init()
     {
         mover=GetComponent<Mover>();
         mover.SetSpeed(MoveSpeed);
@@ -127,6 +133,7 @@ public class BotBase : ObjectBase
     // Update is called once per frame
     void Update()
     {
+        AnimationCotrll() ;
         CheckStartWork();
         CheckLeaveWorkPonint();
         CheckLife();

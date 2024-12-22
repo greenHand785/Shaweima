@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using HighlightingSystem;
+using Microsoft.Unity.VisualStudio.Editor;
 
 public class CommandBotManager : MonoBehaviour
 {
@@ -75,7 +76,9 @@ private void CheckSelected()
                     MaintenanceTask task = target.GetComponent<MaintenanceTask>();
                     WorkArea workArea= target.GetComponent<WorkArea>();
                     Transform currentWorkPoint;
-                    
+                    if (task!= null) 
+                    {
+                        
                      foreach (GameObject selectedObject in selectedObjects)
                      {
                         tempWayPos.Clear();
@@ -92,7 +95,7 @@ private void CheckSelected()
                         {
                             Debug.LogWarning("没有可用的工作点！");
                         }
-                       
+                    }
                     }
                    ClearSelection();
                 }

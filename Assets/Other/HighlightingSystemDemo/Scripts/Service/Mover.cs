@@ -87,7 +87,7 @@ public class Mover : MonoBehaviour
 
         // 移动物体向目标点
         transform.position = Vector3.MoveTowards(transform.position, targetPoint, moveSpeed * Time.deltaTime);
-
+     
         // 检查是否到达目标点
         if (Vector3.Distance(transform.position, targetPoint) < 0.1f)
         {
