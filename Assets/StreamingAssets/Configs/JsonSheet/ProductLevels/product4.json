@@ -1,5 +1,5 @@
 {
-  "ID": 3,
+  "ID": 4,
   "list": [
     {
       "level": 1,
@@ -8,7 +8,21 @@
       "moveSpeed": 5,
       "effect": 1,
       "cost": 2,
-      "durability": 10
+      "durability": 10,
+      "iconPath": "Sprites/采矿机器人",
+      "upIconPath": "Sprites/UI_RuneSlot_Btn_Logic.tex",
+      "workingProcessCol": {
+        "r": 0,
+        "g": 0.7114723,
+        "b": 1,
+        "a": 1
+      },
+      "headCol": {
+        "r": 0,
+        "g": 0.7114723,
+        "b": 1,
+        "a": 1
+      }
     },
     {
       "level": 2,
@@ -17,7 +31,21 @@
       "moveSpeed": 6,
       "effect": 1.2,
       "cost": 2,
-      "durability": 13
+      "durability": 13,
+      "iconPath": "Sprites/采矿机器人",
+      "upIconPath": "Sprites/UI_RuneSlot_Btn_Logic.tex",
+      "workingProcessCol": {
+        "r": 0,
+        "g": 0.7114723,
+        "b": 1,
+        "a": 1
+      },
+      "headCol": {
+        "r": 0,
+        "g": 0.7114723,
+        "b": 1,
+        "a": 1
+      }
     },
     {
       "level": 3,
@@ -26,7 +54,21 @@
       "moveSpeed": 8,
       "effect": 1.5,
       "cost": 2,
-      "durability": 15
+      "durability": 15,
+      "iconPath": "Sprites/采矿机器人",
+      "upIconPath": "Sprites/UI_RuneSlot_Btn_Logic.tex",
+      "workingProcessCol": {
+        "r": 0,
+        "g": 0.7114723,
+        "b": 1,
+        "a": 1
+      },
+      "headCol": {
+        "r": 0,
+        "g": 0.7114723,
+        "b": 1,
+        "a": 1
+      }
     },
     {
       "level": 4,
@@ -35,7 +77,21 @@
       "moveSpeed": 10,
       "effect": 2,
       "cost": 2,
-      "durability": 20
+      "durability": 20,
+      "iconPath": "Sprites/采矿机器人",
+      "upIconPath": "Sprites/UI_RuneSlot_Btn_Logic.tex",
+      "workingProcessCol": {
+        "r": 0,
+        "g": 0.7114723,
+        "b": 1,
+        "a": 1
+      },
+      "headCol": {
+        "r": 0,
+        "g": 0.7114723,
+        "b": 1,
+        "a": 1
+      }
     },
     {
       "level": 5,
@@ -44,7 +100,21 @@
       "moveSpeed": 10,
       "effect": 2.5,
       "cost": 2,
-      "durability": 20
+      "durability": 20,
+      "iconPath": "Sprites/采矿机器人",
+      "upIconPath": "Sprites/UI_RuneSlot_Btn_Logic.tex",
+      "workingProcessCol": {
+        "r": 0,
+        "g": 0.7114723,
+        "b": 1,
+        "a": 1
+      },
+      "headCol": {
+        "r": 0,
+        "g": 0.7114723,
+        "b": 1,
+        "a": 1
+      }
     }
   ]
 

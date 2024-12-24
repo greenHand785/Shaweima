@@ -184,4 +184,17 @@ public class BotFactory : MonoSingleton<BotFactory>
     {
         return botExamples;
     }
+
+    public BotFactoryInfoBase GetFactoryInfoByType(ObjectType type)
+    {
+        if(botExamples == null)
+        {
+            return null;
+        }
+        if (botExamples.ContainsKey(type))
+        {
+            return botExamples[type];
+        }
+        return null;
+    }
 }

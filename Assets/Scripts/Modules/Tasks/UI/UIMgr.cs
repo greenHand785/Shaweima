@@ -9,8 +9,9 @@ public class UIMgr : MonoSingleton<UIMgr>
     Canvas m_canvas;
     public Camera UICamera;
     public Button factoryBtn;
+    public Transform popRoot;
 
-    public GameObject FactoryUI;
+    public BotFactoryPanel FactoryUI;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +24,19 @@ public class UIMgr : MonoSingleton<UIMgr>
     public T InstanceUI<T>(string path) where T : MonoBehaviour
     {
         GameObject go = Instantiate(Resources.Load<GameObject>(path));
-        go.transform.SetParent(m_canvas.transform, false);
+        go.transform.SetParent(popRoot, false);
         return go.GetComponent<T>();
     }
 
     void OnClickFactoryBtn()
     {
-        FactoryUI.SetActive(true);
+        if (FactoryUI.state)
+        {
+            FactoryUI.Close();
+        }
+        else
+        {
+            FactoryUI.Open();
+        }
     }
 }

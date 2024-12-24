@@ -11,15 +11,21 @@ public class BotFactoryPanel : MonoBehaviour
     private Transform botRoot;
     private Transform botExample;
 
+
+    private Animation animations;
     private bool isCreated;
+
+    public bool state;
     // Start is called before the first frame update
     void Start()
     {
+        animations = transform.GetComponent<Animation>();
         closeBtn = transform.Find("Close").GetComponent<Button>();
         botRoot = transform.Find("Scroll View/Viewport/Content").transform;
         botExample = transform.Find("Scroll View/Viewport/Content/Example").transform;
         botExample.gameObject.SetActive(false);
         closeBtn.onClick.AddListener(OnClickClose);
+        Close();
     }
 
     // Update is called once per frame
@@ -30,7 +36,7 @@ public class BotFactoryPanel : MonoBehaviour
 
     void OnClickClose()
     {
-        gameObject.SetActive(false);
+        Close();
     }
 
     private void CreateBotInfo()
@@ -46,5 +52,17 @@ public class BotFactoryPanel : MonoBehaviour
             info.SetBotProductInfo(item.Key, item.Value);
             info.gameObject.SetActive(true);
         }
+    }
+
+    public void Open()
+    {
+        animations.Play("BotFactoryPanelOpen");
+        state = true;
+    }
+
+    public void Close()
+    {
+        animations.Play("BotFactoryPanelClose");
+        state = false;
     }
 }
