@@ -54,6 +54,7 @@ public class CommandBotManager : MonoBehaviour
         {
             endPos = Input.mousePosition;
             UpdateLineRenderer();
+            SelectObjectsInBox();
         }
 
         // 鼠标左键松开：完成框选
@@ -61,7 +62,7 @@ public class CommandBotManager : MonoBehaviour
         {
             isSelecting = false;
             lineRenderer.enabled = false;
-            SelectObjectsInBox();
+            //SelectObjectsInBox();
         }
     }
 
@@ -203,6 +204,7 @@ public class CommandBotManager : MonoBehaviour
         // 更新选中物体的状态（例如高亮显示）
         foreach (GameObject selectedObject in selectedObjects)
         {
+            if (selectedObject == null) continue;
             var highlighter = selectedObject.GetComponentInParent<Highlighter>();
             if (highlighter == null) { return; }
             highlighter.tween = true;
@@ -215,10 +217,13 @@ public class CommandBotManager : MonoBehaviour
         // 清空选中物体列表
         foreach (GameObject selectedObject in selectedObjects)
         {
-            var highlighter = selectedObject.GetComponentInParent<Highlighter>();
-            if (highlighter == null) { return; }
-            highlighter.tween = false;
-            highlighter.overlay = false;
+            if (selectedObject!=null)
+            {
+                var highlighter = selectedObject.GetComponentInParent<Highlighter>();
+                if (highlighter == null) { return; }
+                highlighter.tween = false;
+                highlighter.overlay = false;
+            }
         }
         selectedObjects.Clear();
     }
