@@ -90,6 +90,7 @@ private void CheckSelected()
                         // 尝试获取一个工作点
                         if (workArea.HasAvailablePoint())
                         {
+                            if (bot.botState==BotState.Dead) continue;
                             currentWorkPoint = workArea.GetWorkPoint();
                             Debug.Log("获取到工作点：" + currentWorkPoint.name);
                             bot.SetTargetTask(task,currentWorkPoint);
