@@ -17,22 +17,24 @@ public class BotBase : ObjectBase
 {
     public ObjectType type;
     public Mover mover;
-    public  Animator animator; // Animator ×é¼þÒýÓÃ
+    public  Animator animator; // Animator ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     protected MaintenanceTask m_targetTask;
     protected Transform m_curWorkPos;
     protected List<Vector3> tempWayPos = new List<Vector3>();
 
 
-    public float MoveSpeed;//ÒÆ¶¯ËÙ¶È
-    public float EfficiencyMultiplier;//¹¤×÷Ð§ÂÊ£¬±¶
-    public float CanSurvivalTime;  //¿É´æ»îÊ±¼ä
-    public float Durability; //ÄÍ¾Ã¶È[0,1]£¬ passTime/CanSurvivalTime£»
-    public int CreatNeedCoins;//»¨·Ñ½ð±Ò
+    public float MoveSpeed;//ï¿½Æ¶ï¿½ï¿½Ù¶ï¿½
+    public float EfficiencyMultiplier;//ï¿½ï¿½ï¿½ï¿½Ð§ï¿½Ê£ï¿½ï¿½ï¿½
+    public float CanSurvivalTime;  //ï¿½É´ï¿½ï¿½Ê±ï¿½ï¿½
+    public float Durability; //ï¿½Í¾Ã¶ï¿½[0,1]ï¿½ï¿½ passTime/CanSurvivalTimeï¿½ï¿½
+    public int CreatNeedCoins;//ï¿½ï¿½ï¿½Ñ½ï¿½ï¿½
     public float passTime;     
+
+    public GameObject WorkVFX;
    
-    public BotState botState;
+    public BotState botState{set;get;}
     /// <summary>
-    /// »úÆ÷ÈË¹¤×÷×´Ì¬
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½Ë¹ï¿½ï¿½ï¿½×´Ì¬
     /// </summary>
     public bool isWorking
     {
@@ -46,7 +48,7 @@ public class BotBase : ObjectBase
         isWorking = true;
     }
     /// <summary>
-    /// ÉèÖÃ¹¤×÷×´Ì¬
+    /// ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½×´Ì¬
     /// </summary>
     public void SetWorkState(bool workState)
     {
@@ -70,7 +72,7 @@ public class BotBase : ObjectBase
         mover.SetPathPoints(tempWayPos);
         isWorking = false;
         mover.SetWork(true);
-        //µ±Ç°ÔÚÐÐ×ß
+        //ï¿½ï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         botState=BotState.Walk;
         transform.LookAt(m_curWorkPos);
     }
@@ -84,7 +86,7 @@ public class BotBase : ObjectBase
         if (passTime>=CanSurvivalTime)
         {
            botState=BotState.Dead;
-            //Ïú»Ù×Ô¼º£¿
+            //ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½
         }
     }
 
@@ -101,7 +103,7 @@ public class BotBase : ObjectBase
         {
             StartWork();
             mover.SetWork(false);
-            //µ±Ç°ÔÚ¹¤×÷
+            //ï¿½ï¿½Ç°ï¿½Ú¹ï¿½ï¿½ï¿½
             botState=BotState.Work;
             transform.LookAt(m_targetTask.transform.position);
         }
@@ -128,13 +130,14 @@ public class BotBase : ObjectBase
         mover=GetComponent<Mover>();
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
         Init();
     }
 
-
+  
 
 
     // Update is called once per frame
@@ -146,5 +149,11 @@ public class BotBase : ObjectBase
         CheckLife();
 
         mover.SetSpeed(MoveSpeed);
+        WorkVFX.gameObject.SetActive(botState==BotState.Work);
+        if (botState==BotState.Dead)
+        {
+            print("æœºå™¨äºº"+transform.name+"æ­»äº¡");
+            Destroy(this,2) ;
+        }
     }
 }
