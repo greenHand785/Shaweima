@@ -27,7 +27,7 @@ public class GoldSystem : MonoSingleton<GoldSystem>
     // Start is called before the first frame update
     void Start()
     {
-        m_curGold = 100;
+        m_curGold = 10;
     }
 
     // Update is called once per frame

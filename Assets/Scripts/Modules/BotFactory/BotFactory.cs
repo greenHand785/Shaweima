@@ -168,6 +168,8 @@ public class BotFactory : MonoSingleton<BotFactory>
             GameObject go = Instantiate(Resources.Load<GameObject>(value.info.path));
             go.transform.SetParent(botRoot, false);
             go.transform.localPosition = Vector3.zero;
+            BotBase bot = go.GetComponent<BotBase>();
+            bot.SetProperty(value.info);
             // 创建成功!
             Debug.Log("创建成功");
             value.curTime = 0;
