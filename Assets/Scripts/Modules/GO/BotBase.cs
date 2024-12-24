@@ -153,7 +153,7 @@ public class BotBase : ObjectBase
         if (botState==BotState.Dead)
         {
             print("机器人"+transform.name+"死亡");
-            Destroy(this,2) ;
+            Destroy(gameObject,2);
         }
     }
 }

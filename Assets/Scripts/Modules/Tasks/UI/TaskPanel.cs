@@ -15,7 +15,7 @@ public class TaskPanel : MonoBehaviour
     private MaintenanceTask task;
 
     public Transform subTaskRoot;
-    public SubTaskPanel exampleSubTask;
+    public SuTaskPanelNew exampleSubTask;
     
     // Start is called before the first frame update
     void Start()
@@ -50,9 +50,13 @@ public class TaskPanel : MonoBehaviour
         {
             foreach (var item in task.GetTaskInfos())
             {
-                SubTaskPanel sub = Instantiate(exampleSubTask.gameObject, subTaskRoot).GetComponent<SubTaskPanel>();
-                sub.SetTaskInfo(item.Key, item.Value);
+                SuTaskPanelNew sub = Instantiate(exampleSubTask.gameObject, subTaskRoot).GetComponent<SuTaskPanelNew>();
+                sub.SetTaskInfo(item.Key, item.Value, task);
                 sub.gameObject.SetActive(true);
+
+                //SuTaskPanelNew sub = UIMgr.Instance.InstanceUI<SuTaskPanelNew>("Prefables/Pop1");
+                //sub.SetTaskInfo(item.Key, item.Value, task);
+                //sub.SetTarget(task.transform);
             }
         }
 

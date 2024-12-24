@@ -175,6 +175,11 @@ public class CommandBotManager : MonoBehaviour
                         if (workArea.HasAvailablePoint())
                         {
                             if (bot.botState==BotState.Dead) continue;
+                            if (!task.IsContain(bot.type))
+                            {
+                                  Debug.Log("无法为该任务工作：");
+                                  continue;
+                            } 
                             currentWorkPoint = workArea.GetWorkPoint();
                             Debug.Log("获取到工作点：" + currentWorkPoint.name);
                             bot.SetTargetTask(task,currentWorkPoint);

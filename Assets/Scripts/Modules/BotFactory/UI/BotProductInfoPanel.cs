@@ -23,6 +23,11 @@ public class BotProductInfoPanel : MonoBehaviour
     private Button createBtn;
     private Button upBtn;
 
+    private Text time;
+
+    public Image iconImg;
+    public Image upImg;
+    public GameObject Mask;
     private BotFactoryInfoBase product;
     private ObjectType type;
     // Start is called before the first frame update
@@ -42,8 +47,8 @@ public class BotProductInfoPanel : MonoBehaviour
         effect2 = transform.Find("PropertyRoot/NextProperty/property1 (3)").GetComponent<Text>();
         cost2 = transform.Find("PropertyRoot/NextProperty/property1 (4)").GetComponent<Text>();
         durability2 = transform.Find("PropertyRoot/NextProperty/property1 (5)").GetComponent<Text>();
-
-        createBtn = transform.Find("create").GetComponent<Button>();
+        time = transform.Find("Time").GetComponent<Text>();
+        createBtn = transform.Find("icon").GetComponent<Button>();
         upBtn = transform.Find("up").GetComponent<Button>();
 
         createBtn.onClick.AddListener(OnClickCreateBtn);
@@ -71,6 +76,11 @@ public class BotProductInfoPanel : MonoBehaviour
             cost2.text = "升级耗费金币:" + info.cost.ToString();
             durability2.text = "耐久度:" + info.durability.ToString();
         }
+        // 倒计时
+        float timeValue = product.info.createTotalTime - product.curTime;
+        timeValue = Mathf.Max(0, timeValue);
+        time.text = timeValue.ToString("F1");
+        Mask.gameObject.SetActive(!product.isProduce);
         bool state = info != null;
         levelTxt2.gameObject.SetActive(state);
         createTotalTime2.gameObject.SetActive(state);
@@ -78,8 +88,16 @@ public class BotProductInfoPanel : MonoBehaviour
         effect2.gameObject.SetActive(state);
         cost2.gameObject.SetActive(state);
         durability2.gameObject.SetActive(state);
+        //createBtn.gameObject.SetActive(product.isProduce);
 
-        createBtn.gameObject.SetActive(product.isProduce);
+        if(iconImg.sprite == null)
+        {
+            iconImg.sprite = Resources.Load<Sprite>(product.info.iconPath);
+        }
+        if (upImg.sprite == null)
+        {
+            upImg.sprite = Resources.Load<Sprite>(product.info.upIconPath);
+        }
     }
 
     public void SetBotProductInfo(ObjectType type, BotFactoryInfoBase info)
