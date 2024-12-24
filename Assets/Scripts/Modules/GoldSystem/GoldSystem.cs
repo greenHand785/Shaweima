@@ -35,4 +35,14 @@ public class GoldSystem : MonoSingleton<GoldSystem>
     {
         
     }
+
+    public void AddGold(int Value)
+    {
+        m_curGold+=Value;
+    }
+     public void SubGold(int Value)
+    {
+        m_curGold-=Value;
+        if  (m_curGold < 0) m_curGold=0;
+    }
 }
