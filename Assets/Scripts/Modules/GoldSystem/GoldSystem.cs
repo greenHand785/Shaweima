@@ -9,6 +9,8 @@ public class GoldSystem : MonoSingleton<GoldSystem>
 {
     private float m_curGold; // µ±Ç°½ð±Ò
 
+
+    private float m_lastYearGold;
     public float Gold
     {
         set
@@ -44,5 +46,10 @@ public class GoldSystem : MonoSingleton<GoldSystem>
     {
         m_curGold-=Value;
         if  (m_curGold < 0) m_curGold=0;
+    }
+
+    public float GetMoneyGap()
+    {
+       return m_curGold-m_lastYearGold;
     }
 }
