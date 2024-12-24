@@ -220,6 +220,15 @@ public class MaintenanceTask : TaskBase
         m_task.SetTarget(m_equip.transform);
     }
 
+    public bool IsContain(ObjectType type)
+    {
+        if(m_taskRequire == null)
+        {
+            return false;
+        }
+        return m_taskRequire.ContainsKey(type);
+    }
+
     public Dictionary<ObjectType, TaskInfo> GetTaskInfos()
     {
         return m_taskRequire;

@@ -19,6 +19,7 @@ public class BotFactory : MonoSingleton<BotFactory>
         AddBotExample(ObjectType.BotA, 1, 1);
         AddBotExample(ObjectType.BotB, 2, 1);
         AddBotExample(ObjectType.BotC, 3, 1);
+        AddBotExample(ObjectType.BotD, 4, 1);
     }
 
     // Update is called once per frame
