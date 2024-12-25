@@ -1,0 +1,8 @@
+{
+	"ID":1,
+	"skillName":"技能2",
+	"skillPrefaber":"Prefables/Skills/Skill",
+	"skillDes" :"此技能用于巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉！",
+	"skillUpgradeCost":[100, 200, 300, 400, 500],
+	"skillMaxLevel" : 5
+}
