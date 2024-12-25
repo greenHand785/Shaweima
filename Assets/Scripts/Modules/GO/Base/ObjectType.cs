@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// ¶ÔÏóÀàÐÍ
+/// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 /// </summary>
 public enum ObjectType
 {
-    BotA, // Î¬ÐÞ»úÆ÷ÈË
-    BotB, // µçÂ·»úÆ÷ÈË
-    BotC, // Æ÷Ðµ»úÆ÷ÈË
+    BotA, // Î¬ï¿½Þ»ï¿½ï¿½ï¿½ï¿½ï¿½
+    BotB, // ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    BotC, // ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     BotD, 
+
+    è‡ªçˆ†æœºå™¨äºº,
+    å·é’±ä½¬,
+    å¿«é€Ÿçº§ç»¿è‰²å°æ€ª,
+    æ…¢é€Ÿé»„è‰²å°æ€ª
 }
