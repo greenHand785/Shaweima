@@ -31,13 +31,15 @@ public class Mover : MonoBehaviour
     }
   private void Init()
   {
-        // 初始化 LineRenderer
-        lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.material = lineMaterial;
-        lineRenderer.startWidth = 0.05f;
-        lineRenderer.endWidth = 0.05f;
-        lineRenderer.positionCount = pathPoints.Count;
-
+        if(lineMaterial!=null)
+        {
+            // 初始化 LineRenderer
+            lineRenderer = gameObject.AddComponent<LineRenderer>();
+            lineRenderer.material = lineMaterial;
+            lineRenderer.startWidth = 0.05f;
+            lineRenderer.endWidth = 0.05f;
+            lineRenderer.positionCount = pathPoints.Count;
+        }
   }
     void UpdatePath()
     {
@@ -45,11 +47,14 @@ public class Mover : MonoBehaviour
             return;
         //跟新自身位置
         pathPoints[0]=transform.position;
-       lineRenderer.positionCount = pathPoints.Count;
-        // 设置 LineRenderer 的每个点
-        for (int i = 0; i < pathPoints.Count; i++)
+        if(lineMaterial!=null)
         {
-            lineRenderer.SetPosition(i, pathPoints[i]);
+            lineRenderer.positionCount = pathPoints.Count;
+            // 设置 LineRenderer 的每个点
+            for (int i = 0; i < pathPoints.Count; i++)
+            {
+                lineRenderer.SetPosition(i, pathPoints[i]);
+            }
         }
 
         // 绘制箭头
@@ -98,6 +103,10 @@ public class Mover : MonoBehaviour
             {
                 pathPoints.Clear();
             }
+        }
+        else
+        {
+            transform.LookAt(targetPoint);
         }
     }
 
