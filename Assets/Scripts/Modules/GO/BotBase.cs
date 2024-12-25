@@ -10,7 +10,10 @@ public enum BotState
     Free,
     Work,
     Walk,
-    Dead
+    Dead,
+    Attack,
+    BeDamege
+
 }
 
 public class BotBase : ObjectBase
@@ -35,7 +38,8 @@ public class BotBase : ObjectBase
     public GameObject uiPos;
     public GameObject WorkVFX;
    
-    public BotState botState{set;get;}
+ 
+    public BotState botState;//{protected set;get;}
     /// <summary>
     /// �����˹���״̬
     /// </summary>
@@ -129,7 +133,7 @@ public class BotBase : ObjectBase
         Level = info.level;
     }
 
-    protected void Init()
+    protected virtual void Init() 
     {
         mover=GetComponent<Mover>();
         ui = UIMgr.Instance.InstanceUI<BotTitlePanel>("Prefables/BotTitlePanel");
@@ -138,7 +142,7 @@ public class BotBase : ObjectBase
 
 
     // Start is called before the first frame update
-    void Start()
+   public void Start()
     {
         Init();
     }
@@ -147,7 +151,7 @@ public class BotBase : ObjectBase
 
 
     // Update is called once per frame
-    void Update()
+   public void Update()
     {
         AnimationCotrll() ;
         CheckStartWork();
@@ -155,7 +159,10 @@ public class BotBase : ObjectBase
         CheckLife();
 
         mover.SetSpeed(MoveSpeed);
-        WorkVFX.gameObject.SetActive(botState==BotState.Work);
+        if(WorkVFX!=null)
+        {
+            WorkVFX.gameObject.SetActive(botState==BotState.Work);
+        }
         if (botState==BotState.Dead)
         {
             print("机器人"+transform.name+"死亡");
