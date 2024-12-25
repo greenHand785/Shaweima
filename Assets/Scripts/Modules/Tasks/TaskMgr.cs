@@ -15,7 +15,7 @@ public class TaskMgr : MonoBehaviour
 
     public int randomCount = 3;
 
-    public List<ObjectBase> m_equips;
+    public List<EqupiBase> m_equips;
 
     private List<TaskBase> curTask; // 当前任务列表
     public List<TaskBase> CurTask
@@ -71,7 +71,7 @@ public class TaskMgr : MonoBehaviour
             return;
         }
         int index = Random.Range(0, m_equips.Count);
-        ObjectBase targetEqu = m_equips[index];
+        EqupiBase targetEqu = m_equips[index];
         if (target.ContainsKey(targetEqu) && target[targetEqu] != null)
         {
             return;

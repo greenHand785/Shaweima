@@ -37,6 +37,7 @@ public class BotFactoryPanel : MonoBehaviour
     void OnClickClose()
     {
         Close();
+        EventCenter.Broadcast(CombatEventType.Event_OnClickUI);
     }
 
     private void CreateBotInfo()

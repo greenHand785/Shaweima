@@ -4396,6 +4396,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3676999042756412308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5787204635277683971}
+  m_Layer: 6
+  m_Name: uiPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5787204635277683971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3676999042756412308}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.061, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2861322468553824118}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3729215909780622661
 GameObject:
   m_ObjectHideFlags: 0
@@ -7315,7 +7345,7 @@ GameObject:
   - component: {fileID: 4750651732726474276}
   - component: {fileID: 1146492520786280310}
   - component: {fileID: 8339211574182489309}
-  - component: {fileID: 2110128257497330842}
+  - component: {fileID: 6268802333695925395}
   m_Layer: 6
   m_Name: "\u8BA1\u7B97\u5DE5\u4F5C\u53F0"
   m_TagString: WorkAear
@@ -7336,6 +7366,7 @@ Transform:
   m_Children:
   - {fileID: 3858024300026596283}
   - {fileID: 7955393983761152149}
+  - {fileID: 5787204635277683971}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7420,7 +7451,7 @@ MonoBehaviour:
   - {fileID: 890137591092212297}
   - {fileID: 9032389788866122542}
   availableWorkPoints: []
---- !u!114 &2110128257497330842
+--- !u!114 &6268802333695925395
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7429,9 +7460,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6437111008331656247}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe240bf22ecc73a409db0ba35cb8ecab, type: 3}
+  m_Script: {fileID: 11500000, guid: 9bdc8925b662d7544a90f1fac1ad97b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  equipPos: {fileID: 3676999042756412308}
 --- !u!1 &6577212360888064643
 GameObject:
   m_ObjectHideFlags: 0

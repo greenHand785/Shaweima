@@ -11,7 +11,7 @@ public class MaintenanceTask : TaskBase
     protected Dictionary<ObjectType, TaskInfo> m_taskRequire;
     protected Dictionary<ObjectType, List<BotBase>> m_curworking;
 
-    protected ObjectBase m_equip;
+    protected EqupiBase m_equip;
     protected float m_hurtValue;
     protected float m_cureValue;
 
@@ -74,7 +74,14 @@ public class MaintenanceTask : TaskBase
                     float effectValue = 0;
                     foreach (var bot in list)
                     {
-                        effectValue += bot.EfficiencyMultiplier;
+                        if(bot == null)
+                        {
+                            effectValue += 0;
+                        }
+                        else
+                        {
+                            effectValue += bot.EfficiencyMultiplier;
+                        }
                     }
                     workTime = Time.deltaTime * effectValue;
                 }
@@ -111,7 +118,7 @@ public class MaintenanceTask : TaskBase
     /// <summary>
     /// 初始化任务
     /// </summary>
-    public void InitTask(ObjectBase equip, float hurt, float cure, float totalTime)
+    public void InitTask(EqupiBase equip, float hurt, float cure, float totalTime)
     {
         m_hurtValue = hurt;
         m_cureValue = cure;
@@ -217,7 +224,7 @@ public class MaintenanceTask : TaskBase
         }
         m_task.SetContent(s.ToString());
         // 设置目标
-        m_task.SetTarget(m_equip.transform);
+        m_task.SetTarget(m_equip.equipPos.transform);
     }
 
     public bool IsContain(ObjectType type)
@@ -232,6 +239,24 @@ public class MaintenanceTask : TaskBase
     public Dictionary<ObjectType, TaskInfo> GetTaskInfos()
     {
         return m_taskRequire;
+    }
+
+    /// <summary>
+    /// 获得当前机器人任务
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public TaskInfo GetTaskInfo(ObjectType type)
+    {
+        if(m_taskRequire == null)
+        {
+            return null;
+        }
+        if (m_taskRequire.ContainsKey(type))
+        {
+            return m_taskRequire[type];
+        }
+        return null;
     }
 
     public override void Destroy()

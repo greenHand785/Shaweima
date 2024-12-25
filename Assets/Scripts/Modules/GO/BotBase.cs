@@ -22,14 +22,17 @@ public class BotBase : ObjectBase
     protected Transform m_curWorkPos;
     protected List<Vector3> tempWayPos = new List<Vector3>();
 
+    protected BotTitlePanel ui;
 
+    public float Level;
     public float MoveSpeed;//�ƶ��ٶ�
     public float EfficiencyMultiplier;//����Ч�ʣ���
     public float CanSurvivalTime;  //�ɴ��ʱ��
     public float Durability; //�;ö�[0,1]�� passTime/CanSurvivalTime��
     public int CreatNeedCoins;//���ѽ��
-    public float passTime;     
+    public float passTime;
 
+    public GameObject uiPos;
     public GameObject WorkVFX;
    
     public BotState botState{set;get;}
@@ -123,11 +126,14 @@ public class BotBase : ObjectBase
         MoveSpeed = info.moveSpeed;
         EfficiencyMultiplier = info.effect;
         CanSurvivalTime = info.durability;
+        Level = info.level;
     }
 
     protected void Init()
     {
         mover=GetComponent<Mover>();
+        ui = UIMgr.Instance.InstanceUI<BotTitlePanel>("Prefables/BotTitlePanel");
+        ui.InitTitlePanel(this);
     }
 
 
@@ -155,5 +161,8 @@ public class BotBase : ObjectBase
             print("机器人"+transform.name+"死亡");
             Destroy(gameObject,2);
         }
+
+        // 设置任务
+        ui.SetTask(m_targetTask);
     }
 }

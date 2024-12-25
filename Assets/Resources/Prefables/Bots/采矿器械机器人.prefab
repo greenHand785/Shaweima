@@ -33,6 +33,7 @@ Transform:
   m_Children:
   - {fileID: 625848600792804597}
   - {fileID: 2357622462780015072}
+  - {fileID: 6705719056616637007}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -144,12 +145,14 @@ MonoBehaviour:
   type: 3
   mover: {fileID: 1104365859829734711}
   animator: {fileID: 6795748391194457743}
+  Level: 0
   MoveSpeed: 100
   EfficiencyMultiplier: 1
   CanSurvivalTime: 10
   Durability: 1
   CreatNeedCoins: 1
   passTime: 1
+  uiPos: {fileID: 8704893666770900600}
   WorkVFX: {fileID: 9183338598929119198}
 --- !u!1 &7987483001930082718
 GameObject:
@@ -183,6 +186,36 @@ Transform:
   - {fileID: 5822135637893933239}
   m_Father: {fileID: 1104365859829734709}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8704893666770900600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6705719056616637007}
+  m_Layer: 6
+  m_Name: uiPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6705719056616637007
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8704893666770900600}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.646, y: 2.829, z: -0.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1104365859829734709}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1104365858325449485
 PrefabInstance:

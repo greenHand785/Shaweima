@@ -8,6 +8,7 @@ public class GameManager : MonoSingleton<GameManager>
     public Text Year;
     public Text Gold;
     public TaskMgr m_TaskMgr;
+    public ShipEquip m_Ship;
 
     public int curLevel;
 

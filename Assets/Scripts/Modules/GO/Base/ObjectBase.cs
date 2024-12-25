@@ -16,6 +16,14 @@ public class ObjectBase : MonoBehaviour
         private set;
     }
 
+    /// <summary>
+    /// 初始化血量
+    /// </summary>
+    /// <param name="value"></param>
+    public virtual void InitHP(float value)
+    {
+        HP = value;
+    }
 
     /// <summary>
     /// 受伤
