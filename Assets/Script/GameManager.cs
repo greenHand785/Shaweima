@@ -14,7 +14,11 @@ public class GameManager : MonoSingleton<GameManager>
     public BotFactory m_Factory;
     public GoldSystem m_GoldSystem;
     public SkillPanelControl skillPanelControl;
-    //Î´ï¿½Í·ÅµÄ¼ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Î´ï¿½Í·Å£ï¿½
+    //Ö¸Ê¾¼¼ÄÜÎ»ÖÃÔ¤ÖÆÌå
+    public GameObject skillItemPrefab;
+    //Ö¸Ê¾¼¼ÄÜÎ»ÖÃÔ¤ÖÆÌå
+    public GameObject skillItem;
+    //Î´ÊÍ·ÅµÄ¼¼ÄÜ£¨ÒÑÉú³Éµ«ÊÇÎ´ÊÍ·Å£©
     public GameObject currentSkillObj;
 
     public int curLevel;
@@ -52,29 +56,31 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Start()
     {
-        Debug.Log("ï¿½ï¿½Ï·ï¿½ï¿½Ê¼");
+        Debug.Log("??????");
         isStartGame = false;
         list = ConfigManager.Instance.GetJsonConfig<JsonLevelList>(JsonConfigType.Json_LevelConfig);
         
         skillList = ConfigManager.Instance.GetJsonConfig<JsonSkillList>(JsonConfigType.Json_SkillConfig);
+        skillItemPrefab = Resources.Load<GameObject>("Prefables/Skills/Skill");
     }
 
     // Update is called once per frame
     void Update()
     {
-        ESC();
-        //SetSkill();
+        //ESC();
 
-        //if (skillPanelControl.skills.Length > 0 && !skillInit)
-        //{
-        //    for (int i = 0; i < skillList.skillList.Count; i++)
-        //    {
-        //        skillPanelControl.skills[i].info = ConfigManager.Instance.GetJsonSheetConfig<JsonSkillInfo>(JsonSheetType.Json_SkillSheet, skillList.skillList[i]);
-        //        skillPanelControl.skills[i].GetPrefabInfo();
-        //    }
+        SetSkill();
 
-        //    skillInit = true;
-        //}
+        if (skillPanelControl.skills.Length > 0 && !skillInit)
+        {
+            for (int i = 0; i < skillList.skillList.Count; i++)
+            {
+                skillPanelControl.skills[i].info = ConfigManager.Instance.GetJsonSheetConfig<JsonSkillInfo>(JsonSheetType.Json_SkillSheet, skillList.skillList[i]);
+                skillPanelControl.skills[i].GetPrefabInfo();
+            }
+
+            skillInit = true;
+        }
 
         if (list == null || list.levels == null)
         {
@@ -102,9 +108,9 @@ public class GameManager : MonoSingleton<GameManager>
         {
             curLevel++;
             curTime = 0;
-            // ï¿½ï¿½ï¿½ï¿½
+            // ????
             isStartGame = false;
-            // ï¿½ï¿½Ê¼ï¿½ï¿½
+            // ?????
             ResetGameObject();
             EventCenter.Broadcast(CombatEventType.Event_LevelOver);
             // test
@@ -138,21 +144,26 @@ public class GameManager : MonoSingleton<GameManager>
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Destroy(currentSkillObj);
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    Destroy(currentSkillObj);
+        //}
 
         _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(_ray, out _raycastHit, 1000f, ~(1 << 8)))
         {
             currentSkillObj.transform.position = _raycastHit.point;
+            skillItem.transform.position = _raycastHit.point;
         }
 
         if (Input.GetMouseButtonDown(0))
         {
+            currentSkillObj.GetComponent<SkillItem>().UseSkill();
             currentSkillObj = null;
+
+            Destroy(skillItem);
+            skillItem = null;
         }
     }
     public void QuiteGame()
