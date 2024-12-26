@@ -6,11 +6,19 @@ using UnityEngine;
 public class MonsterBot : BotBase
 {
     public float StiffTime=0.08F;
+
+    public int SteaGold;      //偷錢能力
+    public int OffensivePower;//攻擊力
+
+    public AudioSource source;
+    public AudioClip death;
+    public AudioClip getGold;
+
     private bool isStiff = false;            // 是否处于僵硬状态
     protected override void Init()
     {
         base.Init();
-
+        CanSurvivalTime = 9999;
     }
 
 
@@ -89,19 +97,29 @@ public class MonsterBot : BotBase
             if (type== ObjectType.自爆机器人) 
             {
                 botState=BotState.Dead;
+                Destroy(gameObject, 1f);
             } 
             else  if (type== ObjectType.偷钱佬) 
             {
                 //减金币
+                PlaySound(getGold);
             }
             else  if (type== ObjectType.快速级绿色小怪) 
             {
                 //减血量
+                //GameManager.Instance.m_Ship.Injured(OffensivePower);
+                //GoldSystem.Instance.SubGold(SteaGold);
+
             }
             if (type== ObjectType.慢速黄色小怪) 
             {
                 //减血量
+                //减血量
+
             }
+
+            GameManager.Instance.m_Ship.Injured(OffensivePower);
+            GoldSystem.Instance.SubGold(SteaGold);
 
             //应用攻击效果
         }
@@ -111,5 +129,21 @@ public class MonsterBot : BotBase
     {
       base.Update();  
       CheAttack();
+      if (botState != BotState.Dead&& HP <= 0) 
+      {
+            botState = BotState.Dead;
+            PlaySound(death);
+      }
+    }
+
+
+    private void PlaySound(AudioClip clip)
+    {
+        if(clip == null ||source == null)
+        {
+            return;
+        }
+        source.clip = clip;
+        source.Play();
     }
 }

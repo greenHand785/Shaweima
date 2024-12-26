@@ -10,6 +10,7 @@ public class Gold : MonoBehaviour
     public float shakeAmount = 0.1f; // 抖动幅度
     public float shakeDuration = 0.5f; // 抖动持续时长
     public float flySpeed = 5f; // 飞向金库的速度
+    public float scaleSpeed = 5f; // 缩小的速度
 
     private bool isFlying = false; // 是否正在飞向金库
     private Vector3 originalPosition; // 金块的初始位置
@@ -84,6 +85,7 @@ public class Gold : MonoBehaviour
         {
             // 插值移动金块位置
             transform.position = Vector3.MoveTowards(transform.position, GoldSystem.Instance.transform.position, flySpeed * Time.deltaTime);
+            transform.localScale = Vector3.MoveTowards(transform.localScale, Vector3.zero, scaleSpeed * Time.deltaTime);
             yield return null;
         }
 

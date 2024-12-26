@@ -9,7 +9,8 @@ public class GoldSystem : MonoSingleton<GoldSystem>
 {
     private float m_curGold; // 当前金币
 
-
+    public int initGold = 100;
+    public ObjectBase gold;
     private float m_lastYearGold;
     public float Gold
     {
@@ -29,7 +30,7 @@ public class GoldSystem : MonoSingleton<GoldSystem>
     // Start is called before the first frame update
     void Start()
     {
-        m_curGold = 10;
+        m_curGold = initGold;
     }
 
     // Update is called once per frame
@@ -42,7 +43,16 @@ public class GoldSystem : MonoSingleton<GoldSystem>
     {
         m_curGold+=Value;
     }
-     public void SubGold(int Value)
+
+    public void AddGold(int Value, EqupiBase equip)
+    {
+        m_curGold += Value;
+        // 生成金币
+        ObjectBase goldC = Instantiate(gold, transform);
+        goldC.transform.position = equip.transform.position;
+    }
+
+    public void SubGold(int Value)
     {
         m_curGold-=Value;
         if  (m_curGold < 0) m_curGold=0;
@@ -51,5 +61,10 @@ public class GoldSystem : MonoSingleton<GoldSystem>
     public float GetMoneyGap()
     {
        return m_curGold-m_lastYearGold;
+    }
+
+    public void ResetParam()
+    {
+        m_curGold = initGold;
     }
 }

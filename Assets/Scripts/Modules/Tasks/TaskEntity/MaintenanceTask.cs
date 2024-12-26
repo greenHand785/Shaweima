@@ -107,12 +107,17 @@ public class MaintenanceTask : TaskBase
 
     public override void GetPunishment()
     {
-        m_equip.Injured(m_hurtValue);
+        //m_equip.Injured(m_hurtValue);
+        // ËðÊ§
+        GameManager.Instance.m_Ship.Injured(m_hurtValue);
     }
 
     public override void GetRewards()
     {
         m_equip.Cure(m_cureValue);
+        // Éú³É½ð±Ò
+        GoldSystem.Instance.AddGold((int)m_cureValue, m_equip);
+        GameManager.Instance.m_Ship.Cure(m_hurtValue - Random.Range(0, 3));
     }
 
     /// <summary>

@@ -11,8 +11,7 @@ public class ShipEquip : ObjectBase
     public ScreenDamage damage;
     private void Start()
     {
-        InitHP(initHP);
-        MainPanel.Instance.Init(initHP);
+        ResetParam();
     }
 
     public override void Injured(float value)
@@ -32,5 +31,11 @@ public class ShipEquip : ObjectBase
         }
     }
 
+    public void ResetParam()
+    {
+        InitHP(initHP);
+        MainPanel.Instance.Init(initHP);
+        damage.CurrentHealth = initHP;
+    }
 
 }

@@ -1,0 +1,9 @@
+{
+  "ID": 5,
+  "level": 5,
+  "createTaskTime": 3,
+  "createAniTime": 3,
+  "hurtCount": 5,
+  "taskGoldRange": 5,
+  "totalTime": 180
+}

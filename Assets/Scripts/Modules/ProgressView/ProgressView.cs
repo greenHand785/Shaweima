@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ProgressView : MonoBehaviour
 {
     public Slider slider;
+    public Slider sliderFront;
     public float delayTime = 1;
     public float maxValue = 1;
     public float Value
@@ -34,21 +35,25 @@ public class ProgressView : MonoBehaviour
     void Start()
     {
         slider.maxValue = maxValue;
+        sliderFront.maxValue = maxValue;
     }
 
     // Update is called once per frame
     void Update()
     {
         slider.maxValue = maxValue;
-        if(Mathf.Abs(m_value - m_targetValue) > 0.1f)
+        sliderFront.maxValue = maxValue;
+        if (Mathf.Abs(m_value - m_targetValue) > 0.1f)
         {
             m_value += m_intervalValue;
         }
         slider.value = m_value;
+        sliderFront.value = m_targetValue;
     }
 
     public void SetValueIm(float value)
     {
         m_value = value;
+        m_targetValue = value;
     }
 }

@@ -16,10 +16,7 @@ public class BotFactory : MonoSingleton<BotFactory>
     // Start is called before the first frame update
     void Start()
     {
-        AddBotExample(ObjectType.BotA, 1, 1);
-        AddBotExample(ObjectType.BotB, 2, 1);
-        AddBotExample(ObjectType.BotC, 3, 1);
-        AddBotExample(ObjectType.BotD, 4, 1);
+        ResetParam();
     }
 
     // Update is called once per frame
@@ -205,5 +202,17 @@ public class BotFactory : MonoSingleton<BotFactory>
             return botExamples[type];
         }
         return null;
+    }
+
+    public void ResetParam()
+    {
+        if(botExamples != null)
+        {
+            botExamples.Clear();
+        }
+        AddBotExample(ObjectType.BotA, 1, 1);
+        AddBotExample(ObjectType.BotB, 2, 1);
+        AddBotExample(ObjectType.BotC, 3, 1);
+        AddBotExample(ObjectType.BotD, 4, 1);
     }
 }
