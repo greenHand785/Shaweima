@@ -113,7 +113,7 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             if (moneyCount >= info.skillUpgradeCost[currentLevel - 1])
             {
-                moneyCount -= info.skillUpgradeCost[currentLevel - 1];
+                GoldSystem.Instance.SubGold(info.skillUpgradeCost[currentLevel - 1]);
                 currentLevel++;
                 skillLevel_Text.text = currentLevel.ToString();
                 upgrade_Button.gameObject.SetActive(false);
