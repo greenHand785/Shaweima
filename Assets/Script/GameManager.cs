@@ -9,6 +9,9 @@ public class GameManager : MonoSingleton<GameManager>
     public ShipEquip m_Ship;
     public BotFactory m_Factory;
     public GoldSystem m_GoldSystem;
+    public SkillPanelControl skillPanelControl;
+    //未释放的技能（已生成但是未释放）
+    public GameObject currentSkillObj;
 
     public int curLevel;
 
@@ -17,6 +20,12 @@ public class GameManager : MonoSingleton<GameManager>
     JsonLevelInfo info;
 
     bool ischanged;
+    JsonSkillList skillList;
+    private bool skillInit;
+    private Ray _ray;
+    private RaycastHit _raycastHit;
+
+    public bool isStartGame;
 
     private bool isStart = true;
     public bool isStartGame
@@ -40,12 +49,26 @@ public class GameManager : MonoSingleton<GameManager>
         Debug.Log("游戏开始");
         list = ConfigManager.Instance.GetJsonConfig<JsonLevelList>(JsonConfigType.Json_LevelConfig);
         isStartGame = true;
+        skillList = ConfigManager.Instance.GetJsonConfig<JsonSkillList>(JsonConfigType.Json_SkillConfig);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(list == null || list.levels == null)
+        SetSkill();
+
+        if (skillPanelControl.skills.Length > 0 && !skillInit)
+        {
+            for (int i = 0; i < skillList.skillList.Count; i++)
+            {
+                skillPanelControl.skills[i].info = ConfigManager.Instance.GetJsonSheetConfig<JsonSkillInfo>(JsonSheetType.Json_SkillSheet, skillList.skillList[i]);
+                skillPanelControl.skills[i].GetPrefabInfo();
+            }
+
+            skillInit = true;
+        }
+
+        if (list == null || list.levels == null)
         {
             return;
         }
@@ -99,4 +122,28 @@ public class GameManager : MonoSingleton<GameManager>
         m_GoldSystem.ResetParam();
     }
 
+    public void SetSkill()
+    {
+        if (currentSkillObj == null)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Destroy(currentSkillObj);
+        }
+
+        _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(_ray, out _raycastHit, 1000f, ~(1 << 8)))
+        {
+            currentSkillObj.transform.position = _raycastHit.point;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            currentSkillObj = null;
+        }
+    }
 }
