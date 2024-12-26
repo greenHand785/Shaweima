@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Google.Protobuf.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     public GameObject ESC_UI;
+    public GameObject Usin_UI;
     public GameObject Main_UI;
     public TaskMgr m_TaskMgr;
     public ShipEquip m_Ship;
@@ -54,7 +56,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Start()
     {
-        Debug.Log("游戏开始");
+        Debug.Log("??????");
         isStartGame = false;
         list = ConfigManager.Instance.GetJsonConfig<JsonLevelList>(JsonConfigType.Json_LevelConfig);
         
@@ -106,9 +108,9 @@ public class GameManager : MonoSingleton<GameManager>
         {
             curLevel++;
             curTime = 0;
-            // 结束
+            // ????
             isStartGame = false;
-            // 初始化
+            // ?????
             ResetGameObject();
             EventCenter.Broadcast(CombatEventType.Event_LevelOver);
             // test
@@ -182,19 +184,28 @@ public class GameManager : MonoSingleton<GameManager>
     private void ESC()
     {
         
-       if (Input.GetKeyDown(KeyCode.Escape))
-       {
-           ECS_ACTIVE = !ECS_ACTIVE;
-           if (ECS_ACTIVE)
-           {
-               isStartGame = false;
-           }
-       }
-       ESC_UI.gameObject.SetActive(ECS_ACTIVE);
+        if (isStart&&Usin_UI.active==false)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ECS_ACTIVE = !ECS_ACTIVE;
+                if (ECS_ACTIVE)
+                {
+                    isStartGame = false;
+                }
+            }
+        }
        
+       ESC_UI.gameObject.SetActive(ECS_ACTIVE);
+       if (ECS_ACTIVE) 
+            ESC_UI.gameObject.SetActive(true);
+        else
+        {
+             ESC_UI.GetComponent<ESC>().Quit();
+        }
         if (Main_UI.active==true)
         {
-            ESC_UI.gameObject.SetActive(false);
+            ESC_UI.GetComponent<ESC>().Quit();
         }
     }
 }
