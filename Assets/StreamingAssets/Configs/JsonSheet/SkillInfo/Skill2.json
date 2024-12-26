@@ -4,7 +4,7 @@
 	"skillPrefaber":"Prefables/Skills/Skill_2",
 	"skillIcon" :"Sprites/量子涡流囚牢",
 	"skillDes" :"量子涡流囚牢是一种高科技控制技能。可以在目标区域召唤出一个基于量子技术的圆形装置，装置启动后会形成强大的蓝色量子涡流。涡流能够将周围的敌人卷入其中，使其陷入无法行动的状态，并且每秒造成一定量的伤害。",
-	"skillUpgradeCost":[100, 200, 300, 400, 500],
+	"skillUpgradeCost":[10, 20, 30, 40, 50],
 	"skillMaxLevel" : 5,
 	"CD":5,
 	"skillHarm" : 10

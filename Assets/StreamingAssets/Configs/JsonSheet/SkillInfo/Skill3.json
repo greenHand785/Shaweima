@@ -4,7 +4,7 @@
 	"skillPrefaber":"Prefables/Skills/Skill_3",
 	"skillIcon" :"Sprites/蓝芒星射矩阵",
 	"skillDes" :"蓝芒星射矩阵可以在目标区域召唤出一个圆形装置，装置启动后会从中心发射出多道强大的蓝色能量射线，这些射线以矩阵形式向四周辐射。射线能够对触碰到的敌人造成巨大的伤害。",
-	"skillUpgradeCost":[100, 200, 300, 400, 500],
+	"skillUpgradeCost":[10, 20, 30, 40, 50],
 	"skillMaxLevel" : 5,
 	"CD":5,
 	"skillHarm" : 10

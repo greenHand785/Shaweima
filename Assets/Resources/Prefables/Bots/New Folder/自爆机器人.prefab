@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 1236500841923551445}
   m_Layer: 0
   m_Name: "\u81EA\u7206\u673A\u5668\u4EBA"
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -713,6 +713,7 @@ MonoBehaviour:
   OffensivePower: 3
   source: {fileID: 1236500841923551445}
   death: {fileID: 8300000, guid: eae1813e2b570954fb7548eb45b20897, type: 3}
+  getGold: {fileID: 0}
   attackEffectPrefab: {fileID: 7615131844953922814}
 --- !u!114 &1277502718652489491
 MonoBehaviour:

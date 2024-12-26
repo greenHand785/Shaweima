@@ -102,7 +102,7 @@ public class GameManager : MonoSingleton<GameManager>
         m_TaskMgr.m_taskGoldRange = info.taskGoldRange;
 
         curTime += Time.deltaTime;
-        if (curTime >= info.totalTime|| m_Ship.HP <= 0)
+        if (curTime >= info.totalTime)
         {
             curLevel++;
             curTime = 0;
@@ -115,7 +115,11 @@ public class GameManager : MonoSingleton<GameManager>
             EventCenter.Broadcast(CombatEventType.Event_GameStart);
             isStartGame = true;
         }
-        
+        if(m_Ship.HP < 0)
+        {
+            // 结束游戏 返回主界面 TODO
+
+        }
     }
 
     public float GetReleaseTime()
@@ -129,10 +133,10 @@ public class GameManager : MonoSingleton<GameManager>
 
     public void ResetGameObject()
     {
-        m_Ship.ResetParam();
+        //m_Ship.ResetParam();
         m_TaskMgr.ResetParam();
-        m_Factory.ResetParam();
-        m_GoldSystem.ResetParam();
+        //m_Factory.ResetParam();
+        //m_GoldSystem.ResetParam();
     }
 
     public void SetSkill()
