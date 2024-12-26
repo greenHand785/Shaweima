@@ -19,6 +19,7 @@ public class MonsterBot : BotBase
     {
         base.Init();
         CanSurvivalTime = 9999;
+        InitHP(GameManager.Instance.curLevel+1);
     }
 
 
@@ -44,6 +45,12 @@ public class MonsterBot : BotBase
         }
     }
 
+
+    public override void Injured(float value)
+    {
+        base.Injured(value);
+        BeAttacked();
+    }
     // <summary>
     /// 处理怪物被攻击逻辑
     /// </summary>
@@ -92,12 +99,14 @@ public class MonsterBot : BotBase
         {
             // 在目标点生成特效
             GameObject attackEffect = Instantiate(attackEffectPrefab, attackEffectPrefab.transform.position, Quaternion.identity);
+            attackEffect.gameObject.SetActive(true);
             // 销毁特效（延迟 2 秒）
             Destroy(attackEffect, 1f);
             if (type== ObjectType.自爆机器人) 
             {
                 botState=BotState.Dead;
                 Destroy(gameObject, 1f);
+                PlaySound(death);
             } 
             else  if (type== ObjectType.偷钱佬) 
             {

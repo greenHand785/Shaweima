@@ -976,6 +976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletExplosionGreen
       objectReference: {fileID: 0}
+    - target: {fileID: 1473840321181740, guid: ddd5890b7dd2ac74ab4caeebf282b3f9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4676267436480690, guid: ddd5890b7dd2ac74ab4caeebf282b3f9, type: 3}
       propertyPath: m_RootOrder
       value: 7

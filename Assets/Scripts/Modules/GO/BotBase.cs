@@ -166,7 +166,7 @@ public class BotBase : ObjectBase
         if (botState==BotState.Dead)
         {
             print("机器人"+transform.name+"死亡");
-            Destroy(gameObject,2);
+            Destroy(gameObject,1);
         }
 
         // 设置任务

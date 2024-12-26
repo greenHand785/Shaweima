@@ -34,6 +34,13 @@ public class BotTitlePanel : MonoBehaviour
         name.text = bot.name.ToString();
         float curHp = bot.CanSurvivalTime - bot.passTime;
         curHp = Mathf.Max(0, curHp);
+
+        if(bot.type == ObjectType.偷钱佬 || bot.type == ObjectType.自爆机器人
+            || bot.type == ObjectType.快速级绿色小怪 || bot.type == ObjectType.慢速黄色小怪)
+        {
+            curHp = bot.HP;
+            hpSlider.maxValue = bot.initHP2;
+        }
         hpSlider.value = curHp;
         if(taskInfo != null)
         {

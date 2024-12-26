@@ -16,6 +16,7 @@ public class ObjectBase : MonoBehaviour
         private set;
     }
 
+    public float initHP2;
     /// <summary>
     /// ³õÊ¼»¯ÑªÁ¿
     /// </summary>
@@ -23,6 +24,7 @@ public class ObjectBase : MonoBehaviour
     public virtual void InitHP(float value)
     {
         HP = value;
+        initHP2 = value;
     }
 
     /// <summary>

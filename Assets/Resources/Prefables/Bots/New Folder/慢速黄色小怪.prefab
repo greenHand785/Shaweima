@@ -715,7 +715,7 @@ MonoBehaviour:
   source: {fileID: 5591368843002114830}
   death: {fileID: 8300000, guid: 0a2258ef51defc94f85e3f825d05880f, type: 3}
   getGold: {fileID: 0}
-  attackEffectPrefab: {fileID: 0}
+  attackEffectPrefab: {fileID: 4586127187859073694}
 --- !u!114 &1277502718652489491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -976,6 +976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BulletExplosionPink
       objectReference: {fileID: 0}
+    - target: {fileID: 1442926313930418, guid: 5c3ba859e2763bf4e837212aba554d74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4410812887192058, guid: 5c3ba859e2763bf4e837212aba554d74, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1050,6 +1054,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c3ba859e2763bf4e837212aba554d74, type: 3}
+--- !u!1 &4586127187859073694 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1442926313930418, guid: 5c3ba859e2763bf4e837212aba554d74, type: 3}
+  m_PrefabInstance: {fileID: 4584684437114524716}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4589090676892157398 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4410812887192058, guid: 5c3ba859e2763bf4e837212aba554d74, type: 3}

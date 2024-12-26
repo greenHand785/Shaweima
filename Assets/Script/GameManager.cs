@@ -67,7 +67,7 @@ public class GameManager : MonoSingleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        //ESC();
+        ESC();
 
         SetSkill();
 
@@ -179,7 +179,7 @@ public class GameManager : MonoSingleton<GameManager>
         #endif
 
     }
-
+    
     public bool ECS_ACTIVE;
     private void ESC()
     {

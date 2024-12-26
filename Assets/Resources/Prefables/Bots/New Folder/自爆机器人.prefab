@@ -696,6 +696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9056f6ed8ab3964e9bd003c951b9f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initHP2: 0
   type: 4
   mover: {fileID: 1277502718652489491}
   animator: {fileID: 200706183876999565}
@@ -744,7 +745,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: eae1813e2b570954fb7548eb45b20897, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -975,6 +976,10 @@ PrefabInstance:
     - target: {fileID: 1746838236574612, guid: 1136e183095a225479ac1b7c87e2ebfa, type: 3}
       propertyPath: m_Name
       value: AntimatterExplosionPurple
+      objectReference: {fileID: 0}
+    - target: {fileID: 1746838236574612, guid: 1136e183095a225479ac1b7c87e2ebfa, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4069344602898008, guid: 1136e183095a225479ac1b7c87e2ebfa, type: 3}
       propertyPath: m_RootOrder
