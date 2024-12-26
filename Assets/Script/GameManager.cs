@@ -8,12 +8,19 @@ public class GameManager : MonoSingleton<GameManager>
     public Text Year;
     public Text Gold;
     public TaskMgr m_TaskMgr;
+    public SkillPanelControl skillPanelControl;
+    //未释放的技能（已生成但是未释放）
+    public GameObject currentSkillObj;
 
     public int curLevel;
 
     private float curTime;
     JsonLevelList list;
     JsonLevelInfo info;
+
+    JsonSkillList skillList;
+    private Ray _ray;
+    private RaycastHit _raycastHit;
 
     public bool isStartGame;
 
@@ -22,12 +29,19 @@ public class GameManager : MonoSingleton<GameManager>
         Debug.Log("游戏开始");
         list = ConfigManager.Instance.GetJsonConfig<JsonLevelList>(JsonConfigType.Json_LevelConfig);
 
+        skillList = ConfigManager.Instance.GetJsonConfig<JsonSkillList>(JsonConfigType.Json_SkillConfig);
+        for (int i = 0; i < skillList.skillList.Count; i++)
+        {
+            skillPanelControl.skills[i].info = ConfigManager.Instance.GetJsonSheetConfig<JsonSkillInfo>(JsonSheetType.Json_SkillSheet, skillList.skillList[i]);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(list == null || list.levels == null)
+        SetSkill();
+
+        if (list == null || list.levels == null)
         {
             return;
         }
@@ -64,7 +78,31 @@ public class GameManager : MonoSingleton<GameManager>
     }
 
 
+    public void SetSkill()
+    {
+        if (currentSkillObj == null)
+        {
+            return;
+        }
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Destroy(currentSkillObj);
+        }
+
+        _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(_ray, out _raycastHit, 1000f))
+        {
+            if (_raycastHit.transform.tag == "Ground" || _raycastHit.transform.tag == "Enemy")
+                currentSkillObj.transform.position = _raycastHit.point;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            currentSkillObj = null;
+        }
+    }
 
 
 
