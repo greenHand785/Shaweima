@@ -65,19 +65,20 @@ public class GameManager : MonoSingleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        ESC();
-        //SetSkill();
+        //ESC();
 
-        //if (skillPanelControl.skills.Length > 0 && !skillInit)
-        //{
-        //    for (int i = 0; i < skillList.skillList.Count; i++)
-        //    {
-        //        skillPanelControl.skills[i].info = ConfigManager.Instance.GetJsonSheetConfig<JsonSkillInfo>(JsonSheetType.Json_SkillSheet, skillList.skillList[i]);
-        //        skillPanelControl.skills[i].GetPrefabInfo();
-        //    }
+        SetSkill();
 
-        //    skillInit = true;
-        //}
+        if (skillPanelControl.skills.Length > 0 && !skillInit)
+        {
+            for (int i = 0; i < skillList.skillList.Count; i++)
+            {
+                skillPanelControl.skills[i].info = ConfigManager.Instance.GetJsonSheetConfig<JsonSkillInfo>(JsonSheetType.Json_SkillSheet, skillList.skillList[i]);
+                skillPanelControl.skills[i].GetPrefabInfo();
+            }
+
+            skillInit = true;
+        }
 
         if (list == null || list.levels == null)
         {
@@ -141,10 +142,10 @@ public class GameManager : MonoSingleton<GameManager>
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Destroy(currentSkillObj);
-        }
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    Destroy(currentSkillObj);
+        //}
 
         _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
