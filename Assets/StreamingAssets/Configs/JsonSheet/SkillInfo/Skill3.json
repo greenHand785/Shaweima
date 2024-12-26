@@ -1,8 +1,10 @@
 {
 	"ID":2,
-	"skillName":"技能3",
+	"skillName":"蓝芒星射矩阵",
 	"skillPrefaber":"Prefables/Skills/Skill",
-	"skillDes" :"此技能用于巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉！",
+	"skillIcon" :"Sprites/蓝芒星射矩阵",
+	"skillDes" :"蓝芒星射矩阵是一种高科技攻击技能。使用者可以在目标区域召唤出一个圆形装置，装置启动后会从中心发射出多道强大的蓝色能量射线，这些射线以矩阵形式向四周辐射。射线能够对触碰到的敌人造成巨大的伤害，是一种极具威慑力的科技型攻击手段。",
 	"skillUpgradeCost":[100, 200, 300, 400, 500],
-	"skillMaxLevel" : 5
+	"skillMaxLevel" : 5,
+	"skillHarm" : 10
 }

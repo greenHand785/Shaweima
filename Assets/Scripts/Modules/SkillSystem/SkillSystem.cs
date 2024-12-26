@@ -40,8 +40,6 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         skill_Button.onClick.AddListener(UseSkill);
 
         skillLevel_Text.text = currentLevel.ToString();
-
-        StartCoroutine(GetInfo());
     }
 
     // Update is called once per frame
@@ -63,7 +61,7 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
 
         //判断金币是否够升级技能
-        if (info.skillUpgradeCost.Length > 0)
+        if (info != null && info.skillUpgradeCost.Length > 0)
         {
             if (skillLevel_Text.text == "Max") return;
 
@@ -140,9 +138,9 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         skillDetailPanel.SetActive(false);
     }
 
-    IEnumerator GetInfo()
+    public void GetPrefabInfo()
     {
-        yield return null;
         skillPrefab = Resources.Load<GameObject>(info.skillPrefaber);
+        skillImage.sprite = Resources.Load<Sprite>(info.skillIcon);
     }
 }

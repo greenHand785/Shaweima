@@ -19,6 +19,7 @@ public class GameManager : MonoSingleton<GameManager>
     JsonLevelInfo info;
 
     JsonSkillList skillList;
+    private bool skillInit;
     private Ray _ray;
     private RaycastHit _raycastHit;
 
@@ -30,16 +31,23 @@ public class GameManager : MonoSingleton<GameManager>
         list = ConfigManager.Instance.GetJsonConfig<JsonLevelList>(JsonConfigType.Json_LevelConfig);
 
         skillList = ConfigManager.Instance.GetJsonConfig<JsonSkillList>(JsonConfigType.Json_SkillConfig);
-        for (int i = 0; i < skillList.skillList.Count; i++)
-        {
-            skillPanelControl.skills[i].info = ConfigManager.Instance.GetJsonSheetConfig<JsonSkillInfo>(JsonSheetType.Json_SkillSheet, skillList.skillList[i]);
-        }
     }
 
     // Update is called once per frame
     void Update()
     {
         SetSkill();
+
+        if (skillPanelControl.skills.Length > 0 && !skillInit)
+        {
+            for (int i = 0; i < skillList.skillList.Count; i++)
+            {
+                skillPanelControl.skills[i].info = ConfigManager.Instance.GetJsonSheetConfig<JsonSkillInfo>(JsonSheetType.Json_SkillSheet, skillList.skillList[i]);
+                skillPanelControl.skills[i].GetPrefabInfo();
+            }
+
+            skillInit = true;
+        }
 
         if (list == null || list.levels == null)
         {
@@ -92,10 +100,9 @@ public class GameManager : MonoSingleton<GameManager>
 
         _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(_ray, out _raycastHit, 1000f))
+        if (Physics.Raycast(_ray, out _raycastHit, 1000f, ~(1 << 8)))
         {
-            if (_raycastHit.transform.tag == "Ground" || _raycastHit.transform.tag == "Enemy")
-                currentSkillObj.transform.position = _raycastHit.point;
+            currentSkillObj.transform.position = _raycastHit.point;
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -103,7 +110,4 @@ public class GameManager : MonoSingleton<GameManager>
             currentSkillObj = null;
         }
     }
-
-
-
 }

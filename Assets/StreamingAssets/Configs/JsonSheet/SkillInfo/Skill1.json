@@ -1,8 +1,10 @@
 {
 	"ID":0,
-	"skillName":"技能1",
+	"skillName":"元素漩涡",
 	"skillPrefaber":"Prefables/Skills/Skill",
-	"skillDes" :"此技能用于巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉巴拉！",
+	"skillIcon" :"Sprites/元素漩涡",
+	"skillDes" :"该技能召唤出一股强大的元素漩涡，可对周围敌人造成持续伤害。随着技能等级提升，漩涡的范围和伤害强度会不断增加。",
 	"skillUpgradeCost":[100, 200, 300, 400, 500],
-	"skillMaxLevel" : 5
+	"skillMaxLevel" : 5,
+	"skillHarm" : 10
 }
