@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    public GameObject ESC_UI;
+    public GameObject Main_UI;
     public TaskMgr m_TaskMgr;
     public ShipEquip m_Ship;
     public BotFactory m_Factory;
@@ -25,8 +27,6 @@ public class GameManager : MonoSingleton<GameManager>
     private Ray _ray;
     private RaycastHit _raycastHit;
 
-    public bool isStartGame;
-
     private bool isStart = true;
     public bool isStartGame
     {
@@ -40,6 +40,10 @@ public class GameManager : MonoSingleton<GameManager>
             {
                 isStart = value;
                 EventCenter.Broadcast(CombatEventType.Event_GameStateChanged, isStart);
+                if (isStart ==true)
+                {
+                    ECS_ACTIVE = false;
+                }
             }
         }
     }
@@ -47,26 +51,28 @@ public class GameManager : MonoSingleton<GameManager>
     void Start()
     {
         Debug.Log("ÓÎÏ·¿ªÊ¼");
+        isStartGame = false;
         list = ConfigManager.Instance.GetJsonConfig<JsonLevelList>(JsonConfigType.Json_LevelConfig);
-        isStartGame = true;
+        
         skillList = ConfigManager.Instance.GetJsonConfig<JsonSkillList>(JsonConfigType.Json_SkillConfig);
     }
 
     // Update is called once per frame
     void Update()
     {
-        SetSkill();
+        ESC();
+        //SetSkill();
 
-        if (skillPanelControl.skills.Length > 0 && !skillInit)
-        {
-            for (int i = 0; i < skillList.skillList.Count; i++)
-            {
-                skillPanelControl.skills[i].info = ConfigManager.Instance.GetJsonSheetConfig<JsonSkillInfo>(JsonSheetType.Json_SkillSheet, skillList.skillList[i]);
-                skillPanelControl.skills[i].GetPrefabInfo();
-            }
+        //if (skillPanelControl.skills.Length > 0 && !skillInit)
+        //{
+        //    for (int i = 0; i < skillList.skillList.Count; i++)
+        //    {
+        //        skillPanelControl.skills[i].info = ConfigManager.Instance.GetJsonSheetConfig<JsonSkillInfo>(JsonSheetType.Json_SkillSheet, skillList.skillList[i]);
+        //        skillPanelControl.skills[i].GetPrefabInfo();
+        //    }
 
-            skillInit = true;
-        }
+        //    skillInit = true;
+        //}
 
         if (list == null || list.levels == null)
         {
@@ -103,6 +109,7 @@ public class GameManager : MonoSingleton<GameManager>
             EventCenter.Broadcast(CombatEventType.Event_GameStart);
             isStartGame = true;
         }
+        
     }
 
     public float GetReleaseTime()
@@ -144,6 +151,35 @@ public class GameManager : MonoSingleton<GameManager>
         if (Input.GetMouseButtonDown(0))
         {
             currentSkillObj = null;
+        }
+    }
+    public void QuiteGame()
+    {
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+
+    }
+
+    public bool ECS_ACTIVE;
+    private void ESC()
+    {
+        
+       if (Input.GetKeyDown(KeyCode.Escape))
+       {
+           ECS_ACTIVE = !ECS_ACTIVE;
+           if (ECS_ACTIVE)
+           {
+               isStartGame = false;
+           }
+       }
+       ESC_UI.gameObject.SetActive(ECS_ACTIVE);
+       
+        if (Main_UI.active==true)
+        {
+            ESC_UI.gameObject.SetActive(false);
         }
     }
 }
