@@ -9,16 +9,17 @@ public class GameManager : MonoSingleton<GameManager>
     public GameObject ESC_UI;
     public GameObject Usin_UI;
     public GameObject Main_UI;
+     public GameObject End_UI;
     public TaskMgr m_TaskMgr;
     public ShipEquip m_Ship;
     public BotFactory m_Factory;
     public GoldSystem m_GoldSystem;
     public SkillPanelControl skillPanelControl;
-    //Ö¸Ê¾¼¼ÄÜÎ»ÖÃÔ¤ÖÆÌå
+    //Ö¸Ê¾ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
     public GameObject skillItemPrefab;
-    //Ö¸Ê¾¼¼ÄÜÎ»ÖÃÔ¤ÖÆÌå
+    //Ö¸Ê¾ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½Ô¤ï¿½ï¿½ï¿½ï¿½
     public GameObject skillItem;
-    //Î´ÊÍ·ÅµÄ¼¼ÄÜ£¨ÒÑÉú³Éµ«ÊÇÎ´ÊÍ·Å£©
+    //Î´ï¿½Í·ÅµÄ¼ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Î´ï¿½Í·Å£ï¿½
     public GameObject currentSkillObj;
 
     public int curLevel;
@@ -119,8 +120,11 @@ public class GameManager : MonoSingleton<GameManager>
         }
         if(m_Ship.HP < 0)
         {
-            // ½áÊøÓÎÏ· ·µ»ØÖ÷½çÃæ TODO
-
+            isStart=true;
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï· ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ TODO
+            End_UI.gameObject.SetActive(true);
+            Usin_UI.gameObject.SetActive(false);
+            ESC_UI.gameObject.SetActive(false);
         }
     }
 
