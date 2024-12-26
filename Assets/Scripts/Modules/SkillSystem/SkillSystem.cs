@@ -29,6 +29,8 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private float currentCD;
     //当前技能等级
     private int currentLevel = 1;
+    //
+    private float skillHarm;
 
     private Ray _ray;
     private RaycastHit _raycastHit;
@@ -96,8 +98,11 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             if (Physics.Raycast(_ray, out _raycastHit, 1000f))
             {
                 GameObject skill = Instantiate(skillPrefab, _raycastHit.point, Quaternion.identity);
-
+                skill.GetComponent<SkillItem>().skillHarm = skillHarm;
                 GameManager.Instance.currentSkillObj = skill;
+
+                GameObject skillItem = Instantiate(GameManager.Instance.skillItemPrefab, _raycastHit.point, Quaternion.identity);
+                GameManager.Instance.skillItem = skillItem;
             }
         }
     }
@@ -112,6 +117,7 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 currentLevel++;
                 skillLevel_Text.text = currentLevel.ToString();
                 upgrade_Button.gameObject.SetActive(false);
+                skillHarm += 15;
             }
         }
     }
@@ -142,5 +148,7 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         skillPrefab = Resources.Load<GameObject>(info.skillPrefaber);
         skillImage.sprite = Resources.Load<Sprite>(info.skillIcon);
+        skillHarm = info.skillHarm;
+        CD = info.CD;
     }
 }

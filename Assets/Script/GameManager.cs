@@ -9,6 +9,10 @@ public class GameManager : MonoSingleton<GameManager>
     public Text Gold;
     public TaskMgr m_TaskMgr;
     public SkillPanelControl skillPanelControl;
+    //指示技能位置预制体
+    public GameObject skillItemPrefab;
+    //指示技能位置预制体
+    public GameObject skillItem;
     //未释放的技能（已生成但是未释放）
     public GameObject currentSkillObj;
 
@@ -31,6 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
         list = ConfigManager.Instance.GetJsonConfig<JsonLevelList>(JsonConfigType.Json_LevelConfig);
 
         skillList = ConfigManager.Instance.GetJsonConfig<JsonSkillList>(JsonConfigType.Json_SkillConfig);
+        skillItemPrefab = Resources.Load<GameObject>("Prefables/Skills/Skill");
     }
 
     // Update is called once per frame
@@ -103,11 +108,16 @@ public class GameManager : MonoSingleton<GameManager>
         if (Physics.Raycast(_ray, out _raycastHit, 1000f, ~(1 << 8)))
         {
             currentSkillObj.transform.position = _raycastHit.point;
+            skillItem.transform.position = _raycastHit.point;
         }
 
         if (Input.GetMouseButtonDown(0))
         {
+            currentSkillObj.GetComponent<SkillItem>().UseSkill();
             currentSkillObj = null;
+
+            Destroy(skillItem);
+            skillItem = null;
         }
     }
 }

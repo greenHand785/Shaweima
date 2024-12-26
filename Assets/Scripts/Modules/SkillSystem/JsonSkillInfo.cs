@@ -13,5 +13,6 @@ public class JsonSkillInfo : JsonSheetBase
     public string skillDes; // 技能描述
     public int[] skillUpgradeCost;//技能升级消耗
     public int skillMaxLevel;//技能最高等级
+    public float CD;//技能冷却时间
     public float skillHarm;//技能伤害
 }
