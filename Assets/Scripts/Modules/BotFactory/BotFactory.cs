@@ -16,10 +16,7 @@ public class BotFactory : MonoSingleton<BotFactory>
     // Start is called before the first frame update
     void Start()
     {
-        AddBotExample(ObjectType.BotA, 1, 1);
-        AddBotExample(ObjectType.BotB, 2, 1);
-        AddBotExample(ObjectType.BotC, 3, 1);
-        AddBotExample(ObjectType.BotD, 4, 1);
+        ResetParam();
     }
 
     // Update is called once per frame
@@ -132,6 +129,7 @@ public class BotFactory : MonoSingleton<BotFactory>
         if(botExamples == null ||!botExamples.ContainsKey(type))
         {
             Debug.LogError("机器人不存在，无法升级");
+            EventCenter.Broadcast(CombatEventType.Event_OnError);
             return;
         }
         if(botExamples.TryGetValue(type, out BotFactoryInfoBase value))
@@ -139,17 +137,20 @@ public class BotFactory : MonoSingleton<BotFactory>
             if(gold.Gold < value.info.cost)
             {
                 Debug.LogError("金币不够，无法升级");
+                EventCenter.Broadcast(CombatEventType.Event_OnError);
                 return;
             }
             JsonProductDefield info = GetJsonProductInfo(value.levelId, value.info.level + 1);
             if(info == null)
             {
                 Debug.LogError("等级不存在，无法升级");
+                EventCenter.Broadcast(CombatEventType.Event_OnError);
                 return;
             }
             gold.Gold -= value.info.cost;
             value.info = info;
             Debug.Log("升级成功");
+            EventCenter.Broadcast(CombatEventType.Event_OnUpgrade);
         }
     }
 
@@ -162,11 +163,14 @@ public class BotFactory : MonoSingleton<BotFactory>
         if (botExamples == null || !botExamples.ContainsKey(type))
         {
             Debug.LogError("机器人不存在，无法创建");
+            EventCenter.Broadcast(CombatEventType.Event_OnError);
             return;
         }
         if(botExamples.TryGetValue(type, out BotFactoryInfoBase value))
         {
-            GameObject go = Instantiate(Resources.Load<GameObject>(value.info.path));
+            GameObject pre = Resources.Load<GameObject>(value.info.path);
+            GameObject go = Instantiate(pre);
+            go.name = pre.name;
             go.transform.SetParent(botRoot, false);
             go.transform.localPosition = Vector3.zero;
             BotBase bot = go.GetComponent<BotBase>();
@@ -174,6 +178,7 @@ public class BotFactory : MonoSingleton<BotFactory>
             // 创建成功!
             Debug.Log("创建成功");
             value.curTime = 0;
+            EventCenter.Broadcast(CombatEventType.Event_OnCreate);
         }
     }
 
@@ -197,5 +202,17 @@ public class BotFactory : MonoSingleton<BotFactory>
             return botExamples[type];
         }
         return null;
+    }
+
+    public void ResetParam()
+    {
+        if(botExamples != null)
+        {
+            botExamples.Clear();
+        }
+        AddBotExample(ObjectType.BotA, 1, 1);
+        AddBotExample(ObjectType.BotB, 2, 1);
+        AddBotExample(ObjectType.BotC, 3, 1);
+        AddBotExample(ObjectType.BotD, 4, 1);
     }
 }

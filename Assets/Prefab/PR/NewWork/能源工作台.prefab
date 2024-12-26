@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3339964}
   - component: {fileID: 2314842}
   - component: {fileID: 1002707986689135128}
-  - component: {fileID: 6584922605685603318}
   - component: {fileID: 2062312553609089211}
+  - component: {fileID: 4133006417890063329}
   m_Layer: 6
   m_Name: "\u80FD\u6E90\u5DE5\u4F5C\u53F0"
   m_TagString: WorkAear
@@ -33,6 +33,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5170524369734021454}
+  - {fileID: 8536010662780277356}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -104,18 +105,6 @@ MonoBehaviour:
   - {fileID: 2135342994327338147}
   - {fileID: 3980497187127426716}
   availableWorkPoints: []
---- !u!114 &6584922605685603318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 133388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe240bf22ecc73a409db0ba35cb8ecab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!136 &2062312553609089211
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -130,6 +119,19 @@ CapsuleCollider:
   m_Height: 3.2045007
   m_Direction: 1
   m_Center: {x: 0.0018055439, y: 1.3838923, z: 0.00003552437}
+--- !u!114 &4133006417890063329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bdc8925b662d7544a90f1fac1ad97b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipPos: {fileID: 5208825661665294440}
 --- !u!1 &123385085334196452
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,3 +642,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.99999994, z: 0.99999994}
   m_Center: {x: -0.0000038146973, y: 0.0000038146973, z: 0}
+--- !u!1 &5208825661665294440
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8536010662780277356}
+  m_Layer: 6
+  m_Name: uiPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8536010662780277356
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5208825661665294440}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.6, y: 3.42, z: 0.02}
+  m_LocalScale: {x: 3.6780899, y: 2.45707, z: 1}
+  m_Children: []
+  m_Father: {fileID: 481298}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

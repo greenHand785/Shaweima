@@ -66,6 +66,7 @@ Transform:
   m_Children:
   - {fileID: 3846943693189559340}
   - {fileID: 6123008739745476899}
+  - {fileID: 4526500187793052335}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -176,13 +177,45 @@ MonoBehaviour:
   type: 0
   mover: {fileID: 1867668819991948662}
   animator: {fileID: 7170639063928794710}
+  Level: 0
   MoveSpeed: 5
   EfficiencyMultiplier: 1
   CanSurvivalTime: 30
   Durability: 0
   CreatNeedCoins: 0
   passTime: 0
+  uiPos: {fileID: 4487276370775299463}
   WorkVFX: {fileID: 6755565427158457845}
+--- !u!1 &4487276370775299463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4526500187793052335}
+  m_Layer: 6
+  m_Name: uiPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4526500187793052335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4487276370775299463}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.103, y: 2.2760012, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1867668819991948656}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1867668819959776086
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -38,5 +38,6 @@ public class UIMgr : MonoSingleton<UIMgr>
         {
             FactoryUI.Open();
         }
+        EventCenter.Broadcast(CombatEventType.Event_OnClickUI);
     }
 }

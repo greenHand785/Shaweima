@@ -11,11 +11,23 @@ using UnityEngine;
 public class TaskMgr : MonoBehaviour
 {
     public float m_createTastTime = 10;
+    public float m_createAniTime = 3;
+    public float m_taskHurtRange = 1;
+    public float m_taskGoldRange = 1;
+
+
     private float m_curTime;
 
     public int randomCount = 3;
 
-    public List<ObjectBase> m_equips;
+    private float m_aniCurTime;
+    
+    public int m_createCount = 3;
+    public Transform m_createPos;
+    public List<MonsterBot> m_aniList; // 怪物列表
+
+
+    public List<EqupiBase> m_equips;
 
     private List<TaskBase> curTask; // 当前任务列表
     public List<TaskBase> CurTask
@@ -45,12 +57,20 @@ public class TaskMgr : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_curTime += Time.deltaTime;
+        float deltalTime = Time.deltaTime;
+        m_curTime += deltalTime;
         if(m_curTime >= m_createTastTime)
         {
             m_curTime = 0;
 
             CreateTask();
+        }
+
+        m_aniCurTime += deltalTime;
+        if (m_aniCurTime >= m_createAniTime)
+        {
+            m_aniCurTime = 0;
+            CreateAni();
         }
     }
 
@@ -64,6 +84,24 @@ public class TaskMgr : MonoBehaviour
 
     }
 
+    private void CreateAni()
+    {
+        if (m_aniList == null || m_aniList.Count <= 0)
+        {
+            return;
+        }
+        int index = Random.Range(0, m_aniList.Count);
+        MonsterBot targetEqu = m_aniList[index];
+        targetEqu = Instantiate(targetEqu.gameObject, m_createPos).GetComponent<MonsterBot>();
+        targetEqu.transform.localPosition = Vector3.zero;
+
+        int randomHp = Random.Range(0, 5);        
+        for (int i = 0; i < randomCount; i++)
+        {
+            targetEqu.InitHP(randomHp);
+        }
+    }
+
     private void CreateMaintenanceTask()
     {
         if(m_equips == null || m_equips.Count <= 0)
@@ -71,14 +109,14 @@ public class TaskMgr : MonoBehaviour
             return;
         }
         int index = Random.Range(0, m_equips.Count);
-        ObjectBase targetEqu = m_equips[index];
+        EqupiBase targetEqu = m_equips[index];
         if (target.ContainsKey(targetEqu) && target[targetEqu] != null)
         {
             return;
         }
         MaintenanceTask task = CreateTaskExeample<MaintenanceTask>(targetEqu.gameObject);
-        int hurt = Random.Range(0, 5);
-        int cure = Random.Range(0, 5);
+        float hurt = Random.Range(m_taskHurtRange, m_taskHurtRange + 5);
+        float gold = Random.Range(m_taskGoldRange, m_taskGoldRange + 2);
         float totalTime = Random.Range(60, 120);
         for (int i = 0; i < randomCount; i++)
         {
@@ -86,7 +124,7 @@ public class TaskMgr : MonoBehaviour
             float time = Random.Range(10, 15);
             task.AddRequire((ObjectType)randomType, time);
         }
-        task.InitTask(targetEqu, hurt, cure, totalTime);
+        task.InitTask(targetEqu, hurt, gold, totalTime);
 
         curTask.Add(task);
         if (target.ContainsKey(targetEqu))
@@ -112,5 +150,29 @@ public class TaskMgr : MonoBehaviour
             return t;
         }
         return go.AddComponent<T>();
+    }
+
+
+    /// <summary>
+    /// 初始化参数
+    /// </summary>
+    public void ResetParam()
+    {
+        if(curTask != null)
+        {
+            foreach (var item in curTask)
+            {
+                Destroy(item);
+            }
+            curTask.Clear();
+        }
+
+        BotBase[] mons = FindObjectsOfType<BotBase>();
+        foreach (var item in mons)
+        {
+            Destroy(item.gameObject);
+        }
+        m_curTime = 0;
+        m_aniCurTime = 0;
     }
 }

@@ -2,6 +2,8 @@
   "ID": 0,
   "level": 0,
   "createTaskTime": 3,
-  "totalTime": 500
-
+  "createAniTime": 10,
+  "hurtCount": 1,
+  "taskGoldRange": 1,
+  "totalTime": 100
 }
