@@ -77,6 +77,10 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
             {
                 upgrade_Button.gameObject.SetActive(true);
             }
+            else if (moneyCount < info.skillUpgradeCost[currentLevel - 1] && upgrade_Button.gameObject.activeSelf == true)
+            {
+                upgrade_Button.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -103,6 +107,8 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
                 GameObject skillItem = Instantiate(GameManager.Instance.skillItemPrefab, _raycastHit.point, Quaternion.identity);
                 GameManager.Instance.skillItem = skillItem;
+
+                EventCenter.Broadcast(CombatEventType.Event_OnClickUI);
             }
         }
     }
@@ -118,6 +124,8 @@ public class SkillSystem : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
                 skillLevel_Text.text = currentLevel.ToString();
                 upgrade_Button.gameObject.SetActive(false);
                 skillHarm += 15;
+
+                EventCenter.Broadcast(CombatEventType.Event_OnClickUI);
             }
         }
     }

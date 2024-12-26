@@ -39,9 +39,9 @@ public class SkillItem : MonoBehaviour
 
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i].transform.root.tag == "Enemy")
+            if (items[i].transform.tag == "Enemy")
             {
-                items[i].transform.root.GetComponent<ObjectBase>().Injured(skillHarm);
+                items[i].transform.GetComponent<ObjectBase>().Injured(skillHarm);
             }
         }
 
