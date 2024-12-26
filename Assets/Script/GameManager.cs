@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Google.Protobuf.Reflection;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoSingleton<GameManager>
 {
     public GameObject ESC_UI;
+    public GameObject Usin_UI;
     public GameObject Main_UI;
     public TaskMgr m_TaskMgr;
     public ShipEquip m_Ship;
     public BotFactory m_Factory;
     public GoldSystem m_GoldSystem;
     public SkillPanelControl skillPanelControl;
-    //Î´ÊÍ·ÅµÄ¼¼ÄÜ£¨ÒÑÉú³Éµ«ÊÇÎ´ÊÍ·Å£©
+    //Î´ï¿½Í·ÅµÄ¼ï¿½ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ï¿½ï¿½Î´ï¿½Í·Å£ï¿½
     public GameObject currentSkillObj;
 
     public int curLevel;
@@ -50,7 +52,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Start()
     {
-        Debug.Log("ÓÎÏ·¿ªÊ¼");
+        Debug.Log("ï¿½ï¿½Ï·ï¿½ï¿½Ê¼");
         isStartGame = false;
         list = ConfigManager.Instance.GetJsonConfig<JsonLevelList>(JsonConfigType.Json_LevelConfig);
         
@@ -100,9 +102,9 @@ public class GameManager : MonoSingleton<GameManager>
         {
             curLevel++;
             curTime = 0;
-            // ½áÊø
+            // ï¿½ï¿½ï¿½ï¿½
             isStartGame = false;
-            // ³õÊ¼»¯
+            // ï¿½ï¿½Ê¼ï¿½ï¿½
             ResetGameObject();
             EventCenter.Broadcast(CombatEventType.Event_LevelOver);
             // test
@@ -167,19 +169,28 @@ public class GameManager : MonoSingleton<GameManager>
     private void ESC()
     {
         
-       if (Input.GetKeyDown(KeyCode.Escape))
-       {
-           ECS_ACTIVE = !ECS_ACTIVE;
-           if (ECS_ACTIVE)
-           {
-               isStartGame = false;
-           }
-       }
-       ESC_UI.gameObject.SetActive(ECS_ACTIVE);
+        if (isStart&&Usin_UI.active==false)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ECS_ACTIVE = !ECS_ACTIVE;
+                if (ECS_ACTIVE)
+                {
+                    isStartGame = false;
+                }
+            }
+        }
        
+       ESC_UI.gameObject.SetActive(ECS_ACTIVE);
+       if (ECS_ACTIVE) 
+            ESC_UI.gameObject.SetActive(true);
+        else
+        {
+             ESC_UI.GetComponent<ESC>().Quit();
+        }
         if (Main_UI.active==true)
         {
-            ESC_UI.gameObject.SetActive(false);
+            ESC_UI.GetComponent<ESC>().Quit();
         }
     }
 }

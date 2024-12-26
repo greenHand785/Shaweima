@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 public class Using : MonoBehaviour
 {
-   
- public GameObject[] pages;
+   public GameObject MainUI;
+  public GameObject[] pages;
 
     // 当前显示的页面索引
     private int currentPageIndex = 0;
@@ -14,9 +15,27 @@ public class Using : MonoBehaviour
     public Button nextPageButton;     // 下一页按钮
     public Button previousPageButton; // 上一页按钮
 
+    public void Open()  
+    {
+        GameManager.Instance.isStartGame=false;    
+    }
+    public void Quit()
+    {
+        gameObject.SetActive(false);
+        if (MainUI.active!=true)  GameManager.Instance.isStartGame=true;    
+
+      
+    }
+    void Update()
+    {
+         if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Quit();
+            }  
+    }
     void Start()
     {
-         
+         GameManager.Instance.Usin_UI=gameObject;
         // 注册按钮点击事件
         nextPageButton.onClick.AddListener(NextPage);
         previousPageButton.onClick.AddListener(PreviousPage);
