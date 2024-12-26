@@ -179,7 +179,8 @@ public class CommandBotManager : MonoBehaviour
                             if (!task.IsContain(bot.type))
                             {
                                   Debug.Log("无法为该任务工作：");
-                                  continue;
+                                  EventCenter.Broadcast(CombatEventType.Event_OnError);
+                                   continue;
                             } 
                             currentWorkPoint = workArea.GetWorkPoint();
                             Debug.Log("获取到工作点：" + currentWorkPoint.name);
@@ -188,6 +189,7 @@ public class CommandBotManager : MonoBehaviour
                         else
                         {
                             Debug.LogWarning("没有可用的工作点！");
+                            EventCenter.Broadcast(CombatEventType.Event_OnError);
                         }
                     }
                     }

@@ -1361,7 +1361,7 @@ MonoBehaviour:
   screenPos: {x: 0, y: 0, z: 0}
   showCamera: {fileID: 0}
   offset: {x: 0, y: 0}
-  OpenDestory: 0
+  OpenDestory: 1
 --- !u!114 &2060597626095759926
 MonoBehaviour:
   m_ObjectHideFlags: 0

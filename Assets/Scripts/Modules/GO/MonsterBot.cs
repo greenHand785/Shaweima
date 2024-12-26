@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MonsterBot : BotBase
 {
-    public float StiffTime=0.08F;
+    public float StiffTime=1F;
 
     public int SteaGold;      //偷錢能力
     public int OffensivePower;//攻擊力
@@ -143,6 +143,10 @@ public class MonsterBot : BotBase
             botState = BotState.Dead;
             PlaySound(death);
       }
+        if (botState != BotState.Walk)
+        {
+            mover.enabled = false;
+        }
     }
 
 

@@ -36,7 +36,14 @@ public class BotFactoryPanel : MonoBehaviour
 
     void OnClickClose()
     {
-        Close();
+        if (state)
+        {
+            Close();
+        }
+        else
+        {
+            Open();
+        }
         EventCenter.Broadcast(CombatEventType.Event_OnClickUI);
     }
 
@@ -57,13 +64,13 @@ public class BotFactoryPanel : MonoBehaviour
 
     public void Open()
     {
-        animations.Play("BotFactoryPanelOpen");
+        animations.Play("BotFactoryPanelClose");
         state = true;
     }
 
     public void Close()
     {
-        animations.Play("BotFactoryPanelClose");
+        animations.Play("BotFactoryPanelOpen");
         state = false;
     }
 }

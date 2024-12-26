@@ -30,6 +30,10 @@ public class TaskPanel : MonoBehaviour
     {
         title.text = title_str;
         releaseTime.text = task.GetReleaseTime().ToString("F1");
+        if(task == null)
+        {
+            Destroy(gameObject);
+        }
     }
     public void SetTitle(string str)
     {

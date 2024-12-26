@@ -79,7 +79,8 @@ public class BotProductInfoPanel : MonoBehaviour
         // µ¹¼ÆÊ±
         float timeValue = product.info.createTotalTime - product.curTime;
         timeValue = Mathf.Max(0, timeValue);
-        time.text = timeValue.ToString("F1");
+        time.text = timeValue.ToString("F0");
+        time.gameObject.SetActive(timeValue > 0);
         Mask.gameObject.SetActive(!product.isProduce);
         bool state = info != null;
         levelTxt2.gameObject.SetActive(state);

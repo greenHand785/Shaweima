@@ -157,10 +157,11 @@ Material:
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
-    - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 0}
+    - _BaseColor: {r: 1, g: 0.93294156, b: 0, a: 0}
     - _BaseColorOverlay: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0}
     - _BaseDirtColor: {r: 0.20588201, g: 0.16361976, b: 0.072664075, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color0: {r: 0.985294, g: 0.985294, b: 0.985294, a: 0}
     - _DetailColor: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []

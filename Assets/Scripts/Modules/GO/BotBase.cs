@@ -165,11 +165,23 @@ public class BotBase : ObjectBase
         }
         if (botState==BotState.Dead)
         {
+            if (m_curWorkPos)
+            {
+                m_curWorkPos.GetComponentInParent<WorkArea>().ReleaseWorkPoint(m_curWorkPos);
+            }
             print("机器人"+transform.name+"死亡");
             Destroy(gameObject,1);
         }
 
         // 设置任务
         ui.SetTask(m_targetTask);
+    }
+
+    private void OnDestroy()
+    {
+        if (m_curWorkPos)
+        {
+            m_curWorkPos.GetComponentInParent<WorkArea>().ReleaseWorkPoint(m_curWorkPos);
+        }
     }
 }
